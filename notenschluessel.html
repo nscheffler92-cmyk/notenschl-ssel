@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Notenschlüssel Generator</title>
+<style>
+body { 
+  font-family: Arial, sans-serif; 
+  padding: 30px; 
+  background: #f5f7fa;
+}
+
+h1 {
+  text-align: center;
+}
+
+input, button {
+  padding: 8px;
+  font-size: 16px;
+  margin: 5px;
+}
+
+button {
+  background-color: #2d6cdf;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1f4fb5;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #2d6cdf;
+  color: white;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+h2 {
+  margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Notenschlüssel Generator</h1>
+
+<div style="text-align:center;">
+<label><b>Maximale Punktzahl:</b> </label>
+<input type="number" id="maxPoints" value="50">
+<button onclick="generate()">Berechnen</button>
+</div>
+
+<h2>Sek II (offizielle Prozentgrenzen)</h2>
+<div id="sek2"></div>
+
+<h2>Sek I</h2>
+<div id="sek1"></div>
+
+<script>
+const thresholds = [
+  {np:15, p:95},{np:14,p:90},{np:13,p:85},{np:12,p:80},
+  {np:11,p:75},{np:10,p:70},{np:9,p:65},{np:8,p:60},
+  {np:7,p:55},{np:6,p:50},{np:5,p:45},{np:4,p:40},
+  {np:3,p:33},{np:2,p:27},{np:1,p:20},{np:0,p:0}
+];
+
+const mapping = {
+15:'1+',14:'1',13:'1-',12:'2+',11:'2',10:'2-',
+9:'3+',8:'3',7:'3-',6:'4+',5:'4',4:'4-',
+3:'5+',2:'5',1:'5-',0:'6'
+};
+
+function percent(val, X){
+  return ((val/X)*100).toFixed(1)+"%";
+}
+
+function generate(){
+  const X = parseInt(document.getElementById('maxPoints').value);
+  if(!X || X<=0) return;
+
+  let s2 = '<table><tr><th>NP</th><th>Note</th><th>von</th><th>bis</th><th>%</th></tr>';
+
+  for(let i=0;i<thresholds.length;i++){
+    let cur = thresholds[i];
+    let next = thresholds[i-1];
+
+    let lower = Math.ceil(cur.p/100 * X);
+    let upper = (i===0) ? X : Math.ceil(next.p/100 * X)-1;
+
+    s2 += `<tr>
+      <td>${cur.np}</td>
+      <td>${mapping[cur.np]}</td>
+      <td>${lower}</td>
+      <td>${upper}</td>
+      <td>${cur.p}%</td>
+    </tr>`;
+  }
+  s2 += '</table>';
+  document.getElementById('sek2').innerHTML = s2;
+
+  let s1 = '<table><tr><th>Note</th><th>von</th><th>bis</th><th>% von</th><th>% bis</th></tr>';
+
+  const bounds = [0.0,0.25,0.5,0.65,0.8,0.9,1.0];
+
+  const mappingSek1 = [
+    {note:1, i:5},
+    {note:2, i:4},
+    {note:3, i:3},
+    {note:4, i:2},
+    {note:5, i:1},
+    {note:6, i:0}
+  ];
+
+  for(let entry of mappingSek1){
+    let i = entry.i;
+    let lower = Math.floor(bounds[i]*X);
+    let upper = (entry.note === 1) ? X : Math.floor(bounds[i+1]*X)-1;
+
+    s1 += `<tr>
+      <td>${entry.note}</td>
+      <td>${lower}</td>
+      <td>${upper}</td>
+      <td>${percent(lower,X)}</td>
+      <td>${percent(upper,X)}</td>
+    </tr>`;
+  }
+
+  s1 += '</table>';
+  document.getElementById('sek1').innerHTML = s1;
+}
+
+generate();
+</script>
+
+</div>
+</body>
+</html>
