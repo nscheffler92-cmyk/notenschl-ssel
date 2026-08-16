@@ -2,164 +2,104 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Notenschlüssel Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notenschlüssel </title>
 <style>
-body { 
-  font-family: Arial, sans-serif; 
-  padding: 30px; 
-  background: #f5f7fa;
-}
-
-h1 {
-  text-align: center;
-}
-
-input, button {
-  padding: 8px;
-  font-size: 16px;
-  margin: 5px;
-}
-
-button {
-  background-color: #2d6cdf;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #1f4fb5;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-}
-
-table {
-  border-collapse: collapse;
-  margin-top: 20px;
-  width: 100%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-th {
-  background-color: #2d6cdf;
-  color: white;
-}
-
-th, td {
-  padding: 10px;
-  text-align: center;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-h2 {
-  margin-top: 40px;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding:30px;background:#f5f7fa;color:#1f2937}
+.container{max-width:900px;margin:auto} h1{text-align:center;margin-bottom:28px} h2{margin-top:40px}
+.controls{text-align:center;background:#fff;padding:18px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+input,button{padding:9px 12px;font-size:16px;margin:5px} input{width:100px;border:1px solid #cbd5e1;border-radius:6px}
+button{background:#2d6cdf;color:#fff;border:0;border-radius:6px;cursor:pointer;font-weight:600}
+button:hover{background:#1f4fb5}
+table{border-collapse:collapse;margin-top:20px;width:100%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);border-radius:10px;overflow:hidden}
+th{background:#2d6cdf;color:#fff} th,td{padding:10px;text-align:center;border-bottom:1px solid #e5e7eb} tr:last-child td{border-bottom:0}
+tr:nth-child(even){background:#f8fafc}.note{font-weight:700}.hint{color:#64748b;font-size:14px;margin-top:8px}
 </style>
 </head>
 <body>
-
 <div class="container">
-
 <h1>Notenschlüssel Generator</h1>
-
-<div style="text-align:center;">
-<label><b>Maximale Punktzahl:</b> </label>
-<input type="number" id="maxPoints" value="50">
+<div class="controls">
+<label for="maxPoints"><b>Maximale Punktzahl:</b></label>
+<input type="number" id="maxPoints" value="50" min="1" step="1">
 <button onclick="generate()">Berechnen</button>
+<div class="hint">Die Punktintervalle werden automatisch aus den festgelegten Prozentgrenzen berechnet.</div>
 </div>
 
-<h2>Sek II (offizielle Prozentgrenzen)</h2>
+<h2>Sek II – 15-Punkte-System</h2>
 <div id="sek2"></div>
 
-<h2>Sek I</h2>
+<h2>Sek I – Noten 1 bis 6</h2>
 <div id="sek1"></div>
+</div>
 
 <script>
-const thresholds = [
-  {np:15, p:95},{np:14,p:90},{np:13,p:85},{np:12,p:80},
-  {np:11,p:75},{np:10,p:70},{np:9,p:65},{np:8,p:60},
-  {np:7,p:55},{np:6,p:50},{np:5,p:45},{np:4,p:40},
-  {np:3,p:33},{np:2,p:27},{np:1,p:20},{np:0,p:0}
-];
+const s2=[
+{np:15,p:95},{np:14,p:90},{np:13,p:85},{np:12,p:80},
+{np:11,p:75},{np:10,p:70},{np:9,p:65},{np:8,p:60},
+{np:7,p:55},{np:6,p:50},{np:5,p:45},{np:4,p:40},
+{np:3,p:33},{np:2,p:27},{np:1,p:20},{np:0,p:0}];
 
-const mapping = {
-15:'1+',14:'1',13:'1-',12:'2+',11:'2',10:'2-',
-9:'3+',8:'3',7:'3-',6:'4+',5:'4',4:'4-',
-3:'5+',2:'5',1:'5-',0:'6'
-};
+const map={
+15:"1+",14:"1",13:"1-",12:"2+",11:"2",10:"2-",
+9:"3+",8:"3",7:"3-",6:"4+",5:"4",4:"4-",
+3:"5+",2:"5",1:"5-",0:"6"};
 
-function percent(val, X){
-  return ((val/X)*100).toFixed(1)+"%";
-}
+const s1=[
+{note:1,p:90},
+{note:2,p:75},
+{note:3,p:60},
+{note:4,p:45},
+{note:5,p:25},
+{note:6,p:0}];
 
 function generate(){
-  const X = parseInt(document.getElementById('maxPoints').value);
-  if(!X || X<=0) return;
+ const X=parseInt(document.getElementById("maxPoints").value,10);
+ if(!X||X<=0)return;
 
-  let s2 = '<table><tr><th>NP</th><th>Note</th><th>von</th><th>bis</th><th>%</th></tr>';
+ // Sek II
+ let a='<table><tr><th>NP</th><th>Note</th><th>von</th><th>bis</th><th>Prozentbereich</th></tr>';
 
-  for(let i=0;i<thresholds.length;i++){
-    let cur = thresholds[i];
-    let next = thresholds[i-1];
+ for(let i=0;i<s2.length;i++){
+   const c=s2[i], n=s2[i-1];
+   const lo=Math.ceil(c.p/100*X);
+   const hi=i===0?X:Math.ceil(n.p/100*X)-1;
+   const pHigh=i===0?100:n.p-0.1;
 
-    let lower = Math.ceil(cur.p/100 * X);
-    let upper = (i===0) ? X : Math.ceil(next.p/100 * X)-1;
+   a+=`<tr>
+     <td class="note">${c.np}</td>
+     <td>${map[c.np]}</td>
+     <td>${lo}</td>
+     <td>${hi}</td>
+     <td>${c.p}% – ${pHigh.toFixed(1)}%</td>
+   </tr>`;
+ }
+ document.getElementById("sek2").innerHTML=a+"</table>";
 
-    s2 += `<tr>
-      <td>${cur.np}</td>
-      <td>${mapping[cur.np]}</td>
-      <td>${lower}</td>
-      <td>${upper}</td>
-      <td>${cur.p}%</td>
-    </tr>`;
-  }
-  s2 += '</table>';
-  document.getElementById('sek2').innerHTML = s2;
+ // Sek I
+ a='<table><tr><th>Note</th><th>von</th><th>bis</th><th>Prozentbereich</th></tr>';
 
-  let s1 = '<table><tr><th>Note</th><th>von</th><th>bis</th><th>% von</th><th>% bis</th></tr>';
+ for(let i=0;i<s1.length;i++){
+   const c=s1[i], n=s1[i+1];
+   const lo=Math.ceil(c.p/100*X);
+   const hi=i===0?X:Math.ceil(n.p/100*X)-1;
 
-  const bounds = [0.0,0.25,0.5,0.65,0.8,0.9,1.0];
+   // Percentage range shown as requested:
+   // 1: 90-100, 2: 75-89, 3: 60-74, 4: 45-59, 5: 25-44, 6: 0-24
+   const pHigh=i===0?100:n.p-1;
 
-  const mappingSek1 = [
-    {note:1, i:5},
-    {note:2, i:4},
-    {note:3, i:3},
-    {note:4, i:2},
-    {note:5, i:1},
-    {note:6, i:0}
-  ];
+   a+=`<tr>
+     <td class="note">${c.note}</td>
+     <td>${lo}</td>
+     <td>${hi}</td>
+     <td>${c.p}% – ${pHigh}%</td>
+   </tr>`;
+ }
 
-  for(let entry of mappingSek1){
-    let i = entry.i;
-    let lower = Math.floor(bounds[i]*X);
-    let upper = (entry.note === 1) ? X : Math.floor(bounds[i+1]*X)-1;
-
-    s1 += `<tr>
-      <td>${entry.note}</td>
-      <td>${lower}</td>
-      <td>${upper}</td>
-      <td>${percent(lower,X)}</td>
-      <td>${percent(upper,X)}</td>
-    </tr>`;
-  }
-
-  s1 += '</table>';
-  document.getElementById('sek1').innerHTML = s1;
+ document.getElementById("sek1").innerHTML=a+"</table>";
 }
 
 generate();
 </script>
-
-</div>
 </body>
 </html>
