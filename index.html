@@ -1,131 +1,372 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Notenschlüssel Generator</title>
 
 <style>
+
+/* =========================================================
+   GRUNDLAYOUT
+   ========================================================= */
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
     padding: 30px;
+
     background: #f5f7fa;
+
     color: #1f2937;
 }
+
 
 .container {
     max-width: 900px;
     margin: auto;
 }
 
+
 h1 {
     text-align: center;
     margin-bottom: 28px;
 }
 
+
 h2 {
     margin-top: 40px;
 }
 
+
 .controls {
     text-align: center;
+
     background: white;
-    padding: 18px;
+
+    padding: 22px;
+
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,0.08);
 }
 
+
+/* =========================================================
+   AUSWAHLFELDER
+   ========================================================= */
+
+select,
 input,
 button {
+
     padding: 9px 12px;
+
     font-size: 16px;
+
     margin: 5px;
 }
 
-input {
-    width: 100px;
-    border: 1px solid #cbd5e1;
+
+select {
+
+    border:
+        1px solid #cbd5e1;
+
     border-radius: 6px;
+
+    background: white;
+
 }
+
+
+input {
+
+    width: 100px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 6px;
+
+}
+
 
 button {
+
     background: #2d6cdf;
+
     color: white;
+
     border: none;
+
     border-radius: 6px;
+
     cursor: pointer;
+
     font-weight: 600;
+
 }
+
 
 button:hover {
+
     background: #1f4fb5;
+
 }
+
+
+.hint {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin-top: 8px;
+
+}
+
+
+/* =========================================================
+   AKTUELLES FACH / BEREICH
+   ========================================================= */
+
+.subject-title {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #2d6cdf;
+
+}
+
+
+/* =========================================================
+   TABELLEN
+   ========================================================= */
 
 table {
+
     border-collapse: collapse;
+
     margin-top: 20px;
+
     width: 100%;
+
     background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+
     border-radius: 10px;
+
     overflow: hidden;
+
 }
 
+
 th {
+
     background: #2d6cdf;
+
     color: white;
+
 }
+
 
 th,
 td {
+
     padding: 10px;
+
     text-align: center;
-    border-bottom: 1px solid #e5e7eb;
+
+    border-bottom:
+        1px solid #e5e7eb;
+
 }
+
 
 tr:last-child td {
+
     border-bottom: none;
+
 }
+
 
 tr:nth-child(even) {
+
     background: #f8fafc;
+
 }
+
 
 .note {
+
     font-weight: 700;
+
 }
 
-.hint {
-    color: #64748b;
-    font-size: 14px;
-    margin-top: 8px;
-}
+
+/* =========================================================
+   ALARM
+   ========================================================= */
 
 .warning {
-    margin-top: 15px;
-    padding: 12px;
-    background: #fff7ed;
-    border-radius: 8px;
-    color: #9a3412;
-    font-size: 14px;
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    background: #fff1f2;
+
+    border:
+        3px solid #dc2626;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    color: #991b1b;
+
+    box-shadow:
+        0 3px 10px rgba(220,38,38,0.15);
+
 }
+
+
+.alarm {
+
+    color: #dc2626;
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    margin-bottom: 12px;
+
+}
+
+
+.warning-text {
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 7px 4px;
+    }
+
+}
+
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="container">
 
-<h1>Notenschlüssel Generator</h1>
 
+<h1>
+    Notenschlüssel Generator
+</h1>
+
+
+<!-- =====================================================
+     AUSWAHL
+     ===================================================== -->
 
 <div class="controls">
 
-    <label for="maxPoints">
-        <b>Maximale Punktzahl:</b>
+
+    <label for="subject">
+
+        <b>Fach:</b>
+
     </label>
+
+
+    <select
+        id="subject"
+        onchange="updateAreas()"
+    >
+
+        <option value="mathematik">
+            Mathematik
+        </option>
+
+        <option value="physik">
+            Physik
+        </option>
+
+        <option value="biologie">
+            Biologie
+        </option>
+
+    </select>
+
+
+    <br>
+
+
+    <label for="area">
+
+        <b>Bereich:</b>
+
+    </label>
+
+
+    <select
+        id="area"
+        onchange="generate()"
+    ></select>
+
+
+    <br>
+
+
+    <label for="maxPoints">
+
+        <b>Maximale Punktzahl:</b>
+
+    </label>
+
 
     <input
         type="number"
@@ -133,35 +374,44 @@ tr:nth-child(even) {
         value="50"
         min="1"
         step="1"
+        onchange="generate()"
     >
 
+
     <button onclick="generate()">
+
         Berechnen
+
     </button>
 
+
     <div class="hint">
-        Jede Rohpunktzahl wird genau einer Bewertung zugeordnet.
+
+        Die Punktintervalle werden automatisch aus
+        den festgelegten Prozentgrenzen berechnet.
+
     </div>
+
 
 </div>
 
 
 <!-- =====================================================
-     SEK II
+     AUSGEWÄHLTER BEREICH
      ===================================================== -->
 
-<h2>Sek II – 15-Punkte-System</h2>
-
-<div id="sek2"></div>
+<div
+    id="subjectTitle"
+    class="subject-title">
+</div>
 
 
 <!-- =====================================================
-     SEK I
+     ERGEBNIS
      ===================================================== -->
 
-<h2>Sek I – Noten 1 bis 6</h2>
+<div id="result"></div>
 
-<div id="sek1"></div>
 
 </div>
 
@@ -169,34 +419,304 @@ tr:nth-child(even) {
 
 <script>
 
+
 /* =========================================================
-   SEK II
-   Mindestprozente
+   NOTENSCHLÜSSEL
+   =========================================================
+
+   WICHTIG:
+
+   Hier kannst du später die Prozentwerte ändern.
+
+   Beispiel:
+
+   { note: 1, p: 90 }
+
+   bedeutet:
+
+   Note 1 ab 90 %.
+
+   Bei Sek II:
+
+   { np: 15, p: 95 }
+
+   bedeutet:
+
+   15 Notenpunkte ab 95 %.
+
    ========================================================= */
 
-const sek2Thresholds = [
 
-    { np: 15, p: 95 },
-    { np: 14, p: 90 },
-    { np: 13, p: 85 },
-    { np: 12, p: 80 },
-    { np: 11, p: 75 },
-    { np: 10, p: 70 },
-    { np: 9,  p: 65 },
-    { np: 8,  p: 60 },
-    { np: 7,  p: 55 },
-    { np: 6,  p: 50 },
-    { np: 5,  p: 45 },
-    { np: 4,  p: 40 },
-    { np: 3,  p: 33 },
-    { np: 2,  p: 27 },
-    { np: 1,  p: 20 },
-    { np: 0,  p: 0 }
-
-];
+const subjects = {
 
 
-/* Notenbezeichnungen */
+    /* =====================================================
+       MATHEMATIK
+       ===================================================== */
+
+    mathematik: {
+
+        name: "Mathematik",
+
+        areas: {
+
+
+            sek1: {
+
+                name: "Sek I",
+
+                type: "sek1",
+
+                thresholds: [
+
+                    { note: 1, p: 90 },
+                    { note: 2, p: 75 },
+                    { note: 3, p: 60 },
+                    { note: 4, p: 45 },
+                    { note: 5, p: 25 },
+                    { note: 6, p: 0 }
+
+                ]
+
+            },
+
+
+            sek2: {
+
+                name: "Sek II",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 95 },
+                    { np: 14, p: 90 },
+                    { np: 13, p: 85 },
+                    { np: 12, p: 80 },
+                    { np: 11, p: 75 },
+                    { np: 10, p: 70 },
+                    { np: 9,  p: 65 },
+                    { np: 8,  p: 60 },
+                    { np: 7,  p: 55 },
+                    { np: 6,  p: 50 },
+                    { np: 5,  p: 45 },
+                    { np: 4,  p: 40 },
+                    { np: 3, p: 33 },
+                    { np: 2, p: 27 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            }
+
+        }
+
+    },
+
+
+    /* =====================================================
+       PHYSIK
+       ===================================================== */
+
+    physik: {
+
+        name: "Physik",
+
+        areas: {
+
+
+            sek1: {
+
+                name: "Sek I",
+
+                type: "sek1",
+
+                thresholds: [
+
+                    { note: 1, p: 90 },
+                    { note: 2, p: 75 },
+                    { note: 3, p: 60 },
+                    { note: 4, p: 45 },
+                    { note: 5, p: 25 },
+                    { note: 6, p: 0 }
+
+                ]
+
+            },
+
+
+            sek2: {
+
+                name: "Sek II",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 95 },
+                    { np: 14, p: 90 },
+                    { np: 13, p: 85 },
+                    { np: 12, p: 80 },
+                    { np: 11, p: 75 },
+                    { np: 10, p: 70 },
+                    { np: 9,  p: 65 },
+                    { np: 8,  p: 60 },
+                    { np: 7,  p: 55 },
+                    { np: 6,  p: 50 },
+                    { np: 5, p: 45 },
+                    { np: 4, p: 40 },
+                    { np: 3, p: 33 },
+                    { np: 2, p: 27 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            }
+
+        }
+
+    },
+
+
+    /* =====================================================
+       BIOLOGIE
+       ===================================================== */
+
+    biologie: {
+
+        name: "Biologie",
+
+        areas: {
+
+
+            /* ---------------------------------------------
+               BIOLOGIE SEK I KLASSE 5–8
+               --------------------------------------------- */
+
+            sek1_5_8: {
+
+                name: "Sek I – Klasse 5–8",
+
+                type: "sek1",
+
+                thresholds: [
+
+                    { note: 1, p: 95 },
+                    { note: 2, p: 85 },
+                    { note: 3, p: 65 },
+                    { note: 4, p: 50 },
+                    { note: 5, p: 25 },
+                    { note: 6, p: 0 }
+
+                ]
+
+            },
+
+
+            /* ---------------------------------------------
+               BIOLOGIE SEK I KLASSE 9–10
+               --------------------------------------------- */
+
+            sek1_9_10: {
+
+                name: "Sek I – Klasse 9–10",
+
+                type: "sek1",
+
+                thresholds: [
+
+                    { note: 1, p: 90 },
+                    { note: 2, p: 75 },
+                    { note: 3, p: 60 },
+                    { note: 4, p: 45 },
+                    { note: 5, p: 25 },
+                    { note: 6, p: 0 }
+
+                ]
+
+            },
+
+
+            /* ---------------------------------------------
+               BIOLOGIE SEK II KURSARBEIT
+               --------------------------------------------- */
+
+            sek2_kursarbeit: {
+
+                name: "Sek II – Kursarbeit",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 95 },
+                    { np: 14, p: 90 },
+                    { np: 13, p: 85 },
+                    { np: 12, p: 80 },
+                    { np: 11, p: 75 },
+                    { np: 10, p: 70 },
+                    { np: 9,  p: 65 },
+                    { np: 8,  p: 60 },
+                    { np: 7,  p: 55 },
+                    { np: 6,  p: 50 },
+                    { np: 5,  p: 45 },
+                    { np: 4, p: 40 },
+                    { np: 3, p: 30 },
+                    { np: 2, p: 27 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            },
+
+
+            /* ---------------------------------------------
+               BIOLOGIE SEK II SONSTIGE LEISTUNGEN
+               --------------------------------------------- */
+
+            sek2_sonstige: {
+
+                name: "Sek II – Sonstige Leistungen",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 98 },
+                    { np: 14, p: 95 },
+                    { np: 13, p: 92 },
+                    { np: 12, p: 85 },
+                    { np: 11, p: 80 },
+                    { np: 10, p: 75 },
+                    { np: 9,  p: 70 },
+                    { np: 8,  p: 65 },
+                    { np: 7,  p: 60 },
+                    { np: 6,  p: 55 },
+                    { np: 5, p: 50 },
+                    { np: 4, p: 45 },
+                    { np: 3, p: 40 },
+                    { np: 2, p: 30 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            }
+
+        }
+
+    }
+
+};
+
+
+
+/* =========================================================
+   SEK-II-NOTENBEZEICHNUNGEN
+   ========================================================= */
 
 const sek2Notes = {
 
@@ -225,110 +745,120 @@ const sek2Notes = {
 };
 
 
-/* =========================================================
-   SEK I
-   Mindestprozente
-   ========================================================= */
-
-const sek1Thresholds = [
-
-    { note: 1, p: 90 },
-    { note: 2, p: 75 },
-    { note: 3, p: 60 },
-    { note: 4, p: 45 },
-    { note: 5, p: 25 },
-    { note: 6, p: 0 }
-
-];
-
 
 /* =========================================================
-   HILFSFUNKTION:
-   Ermittelt die Bewertung für eine konkrete Rohpunktzahl
+   BEREICHE DES AUSGEWÄHLTEN FACHES AKTUALISIEREN
    ========================================================= */
 
-function getSek2Grade(points, maxPoints) {
+function updateAreas() {
 
-    const percentage = points / maxPoints * 100;
 
-    for (let i = 0; i < sek2Thresholds.length; i++) {
+    const subjectKey =
+        document.getElementById(
+            "subject"
+        ).value;
 
-        if (percentage >= sek2Thresholds[i].p) {
 
-            return sek2Thresholds[i].np;
+    const subject =
+        subjects[subjectKey];
 
-        }
+
+    const areaSelect =
+        document.getElementById(
+            "area"
+        );
+
+
+    /*
+       Alte Auswahl löschen
+    */
+
+    areaSelect.innerHTML = "";
+
+
+    /*
+       Neue Bereiche einfügen
+    */
+
+    for (
+        const key in subject.areas
+    ) {
+
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            key;
+
+
+        option.textContent =
+            subject.areas[key].name;
+
+
+        areaSelect.appendChild(
+            option
+        );
 
     }
 
-    return 0;
+
+    /*
+       Anschließend direkt berechnen
+    */
+
+    generate();
+
 }
 
 
 
-function getSek1Grade(points, maxPoints) {
-
-    const percentage = points / maxPoints * 100;
-
-    for (let i = 0; i < sek1Thresholds.length; i++) {
-
-        if (percentage >= sek1Thresholds[i].p) {
-
-            return sek1Thresholds[i].note;
-
-        }
-
-    }
-
-    return 6;
-}
-
-
 /* =========================================================
-   AUS ROHPUNKTEN BEREICHE BILDEN
+   BEWERTUNG EINER ROHPUNKTZAHL
    ========================================================= */
 
-function createRanges(maxPoints, gradeFunction, grades) {
-
-    const ranges = [];
-
-    let currentGrade = null;
-    let start = null;
-
-    for (let points = 0; points <= maxPoints; points++) {
-
-        const grade = gradeFunction(points, maxPoints);
+function getGrade(
+    points,
+    maxPoints,
+    area
+) {
 
 
-        /*
-        Neue Bewertung beginnt
-        */
+    const percentage =
+        points / maxPoints * 100;
 
-        if (grade !== currentGrade) {
 
-            /*
-            Vorherigen Bereich abschließen
-            */
+    for (
+        let i = 0;
+        i < area.thresholds.length;
+        i++
+    ) {
 
-            if (currentGrade !== null) {
 
-                ranges.push({
+        const threshold =
+            area.thresholds[i];
 
-                    grade: currentGrade,
-                    from: start,
-                    to: points - 1
 
-                });
+        if (
+            percentage >=
+            threshold.p
+        ) {
+
+
+            if (
+                area.type === "sek2"
+            ) {
+
+                return threshold.np;
+
+            } else {
+
+                return threshold.note;
 
             }
-
-
-            /*
-            Neuen Bereich beginnen
-            */
-
-            currentGrade = grade;
-            start = points;
 
         }
 
@@ -336,16 +866,117 @@ function createRanges(maxPoints, gradeFunction, grades) {
 
 
     /*
-    Letzten Bereich abschließen
+       Sollte normalerweise nie erreicht werden.
     */
 
-    if (currentGrade !== null) {
+    return area.type === "sek2"
+        ? 0
+        : 6;
+
+}
+
+
+
+/* =========================================================
+   ROHPUNKT-BEREICHE ERMITTELN
+   ========================================================= */
+
+function createRanges(
+    maxPoints,
+    area
+) {
+
+
+    const ranges = [];
+
+
+    let currentGrade = null;
+
+    let start = null;
+
+
+    /*
+       Jede mögliche Rohpunktzahl wird einzeln
+       überprüft.
+    */
+
+    for (
+        let points = 0;
+        points <= maxPoints;
+        points++
+    ) {
+
+
+        const grade =
+            getGrade(
+                points,
+                maxPoints,
+                area
+            );
+
+
+        /*
+           Wenn sich die Bewertung ändert,
+           wird der bisherige Bereich beendet.
+        */
+
+        if (
+            grade !== currentGrade
+        ) {
+
+
+            if (
+                currentGrade !== null
+            ) {
+
+
+                ranges.push({
+
+                    grade:
+                        currentGrade,
+
+                    from:
+                        start,
+
+                    to:
+                        points - 1
+
+                });
+
+            }
+
+
+            currentGrade =
+                grade;
+
+
+            start =
+                points;
+
+        }
+
+    }
+
+
+    /*
+       Letzten Bereich abschließen.
+    */
+
+    if (
+        currentGrade !== null
+    ) {
+
 
         ranges.push({
 
-            grade: currentGrade,
-            from: start,
-            to: maxPoints
+            grade:
+                currentGrade,
+
+            from:
+                start,
+
+            to:
+                maxPoints
 
         });
 
@@ -353,191 +984,298 @@ function createRanges(maxPoints, gradeFunction, grades) {
 
 
     return ranges;
+
 }
 
 
+
 /* =========================================================
-   SEK II TABELLE
+   ERWARTETE BEWERTUNGSSTUFEN
    ========================================================= */
 
-function buildSek2(maxPoints) {
+function getExpectedGrades(area) {
 
-    const ranges =
-        createRanges(
-            maxPoints,
-            getSek2Grade
+
+    if (
+        area.type === "sek2"
+    ) {
+
+        return [
+            0,1,2,3,4,5,6,7,
+            8,9,10,11,12,13,14,15
+        ];
+
+    }
+
+
+    return [
+        1,2,3,4,5,6
+    ];
+
+}
+
+
+
+/* =========================================================
+   ALARM
+   ========================================================= */
+
+function showAlarm(
+    maxPoints,
+    area,
+    missing
+) {
+
+
+    const result =
+        document.getElementById(
+            "result"
         );
 
 
+    result.innerHTML = `
+
+        <div class="warning">
+
+
+            <div class="alarm">
+
+                ⚠️ ALARM DU LAPPEN! ⚠️
+
+            </div>
+
+
+            <div class="warning-text">
+
+
+                <strong>
+                    Keine eindeutige Verteilung möglich.
+                </strong>
+
+
+                <br><br>
+
+
+                Bei einer Maximalpunktzahl von
+
+                <strong>
+                    ${maxPoints} Punkten
+                </strong>
+
+                können die vorgegebenen
+                Prozentgrenzen für
+
+                <strong>
+                    ${area.name}
+                </strong>
+
+                nicht auf alle Bewertungsstufen
+                mit jeweils mindestens einer eigenen
+                Rohpunktzahl abgebildet werden.
+
+
+                <br><br>
+
+
+                Betroffene Bewertungsstufen:
+
+                <strong>
+                    ${missing.join(", ")}
+                </strong>
+
+
+                <br><br>
+
+
+                Bitte eine höhere Maximalpunktzahl
+                verwenden.
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   PROZENTBEREICH EINER STUFE
+   ========================================================= */
+
+function getPercentageRange(
+    index,
+    thresholds
+) {
+
+
+    const current =
+        thresholds[index];
+
+
+    let upper;
+
+
     /*
-    Wir zeigen die Notenpunkte von 15 bis 0.
-    Nicht erreichbare Notenpunkte bekommen "—".
+       Beste Stufe
     */
+
+    if (
+        index === 0
+    ) {
+
+        upper = 100;
+
+    } else {
+
+        /*
+           Die nächste bessere Stufe
+           endet einen Prozentpunkt
+           unter deren Mindestgrenze.
+        */
+
+        upper =
+            thresholds[index - 1].p - 1;
+
+    }
+
+
+    return (
+        current.p +
+        "–" +
+        upper +
+        " %"
+    );
+
+}
+
+
+
+/* =========================================================
+   TABELLE SEK I
+   ========================================================= */
+
+function buildSek1(
+    maxPoints,
+    area,
+    ranges
+) {
+
 
     let html = `
 
         <table>
 
             <tr>
-                <th>NP</th>
-                <th>Note</th>
-                <th>von</th>
-                <th>bis</th>
-                <th>Prozentbereich</th>
+
+                <th>
+                    Note
+                </th>
+
+                <th>
+                    von
+                </th>
+
+                <th>
+                    bis
+                </th>
+
+                <th>
+                    Prozentbereich
+                </th>
+
             </tr>
 
     `;
 
 
-    for (let np = 15; np >= 0; np--) {
+    /*
+       Ausgabe 1 bis 6
+    */
+
+    for (
+        let note = 1;
+        note <= 6;
+        note++
+    ) {
+
 
         const range =
             ranges.find(
-                r => r.grade === np
+                r =>
+                    r.grade === note
             );
 
 
-        const threshold =
-            sek2Thresholds.find(
-                t => t.np === np
+        const index =
+            area.thresholds.findIndex(
+                t =>
+                    t.note === note
             );
 
 
-        let percentageFrom =
-            threshold.p;
+        html += `
+
+            <tr>
+
+                <td class="note">
+
+                    ${note}
+
+                </td>
 
 
-        let percentageTo;
+                <td>
+
+                    ${range.from}
+
+                </td>
 
 
-        if (np === 15) {
+                <td>
 
-            percentageTo = 100;
+                    ${range.to}
 
-        } else {
-
-            const higher =
-                sek2Thresholds.find(
-                    t => t.np === np + 1
-                );
-
-            percentageTo =
-                higher
-                ? higher.p - 0.1
-                : 100;
-
-        }
+                </td>
 
 
-        if (range) {
+                <td>
 
-            html += `
+                    ${getPercentageRange(
+                        index,
+                        area.thresholds
+                    )}
 
-                <tr>
+                </td>
 
-                    <td class="note">
-                        ${np}
-                    </td>
-
-                    <td>
-                        ${sek2Notes[np]}
-                    </td>
-
-                    <td>
-                        ${range.from}
-                    </td>
-
-                    <td>
-                        ${range.to}
-                    </td>
-
-                    <td>
-                        ${percentageFrom}–${percentageTo} %
-                    </td>
-
-                </tr>
-
-            `;
-
-        } else {
-
-            html += `
-
-                <tr>
-
-                    <td class="note">
-                        ${np}
-                    </td>
-
-                    <td>
-                        ${sek2Notes[np]}
-                    </td>
-
-                    <td>—</td>
-                    <td>—</td>
-
-                    <td>
-                        ${percentageFrom}–${percentageTo} %
-                    </td>
-
-                </tr>
-
-            `;
-
-        }
-
-    }
-
-
-    html += `</table>`;
-
-
-    document.getElementById("sek2").innerHTML =
-        html;
-
-
-    /*
-    Hinweis bei kleinen Punktzahlen
-    */
-
-    const missing =
-        ranges.length < 16;
-
-
-    if (missing) {
-
-        document.getElementById("sek2").innerHTML += `
-
-            <div class="warning">
-
-                Bei dieser Maximalpunktzahl sind nicht alle
-                16 Notenpunkte als eigene Rohpunktbereiche
-                darstellbar. Die betroffenen Notenpunkte
-                werden deshalb mit „—“ angezeigt.
-
-                Jede Rohpunktzahl wird trotzdem eindeutig
-                genau einem Notenpunkt zugeordnet.
-
-            </div>
+            </tr>
 
         `;
 
     }
 
+
+    html += `</table>`;
+
+
+    return html;
+
 }
 
 
+
 /* =========================================================
-   SEK I TABELLE
+   TABELLE SEK II
    ========================================================= */
 
-function buildSek1(maxPoints) {
-
-    const ranges =
-        createRanges(
-            maxPoints,
-            getSek1Grade
-        );
+function buildSek2(
+    maxPoints,
+    area,
+    ranges
+) {
 
 
     let html = `
@@ -545,103 +1283,101 @@ function buildSek1(maxPoints) {
         <table>
 
             <tr>
-                <th>Note</th>
-                <th>von</th>
-                <th>bis</th>
-                <th>Prozentbereich</th>
+
+                <th>
+                    NP
+                </th>
+
+                <th>
+                    Note
+                </th>
+
+                <th>
+                    von
+                </th>
+
+                <th>
+                    bis
+                </th>
+
+                <th>
+                    Prozentbereich
+                </th>
+
             </tr>
 
     `;
 
 
-    for (let note = 1; note <= 6; note++) {
+    /*
+       Ausgabe 15 bis 0
+    */
+
+    for (
+        let np = 15;
+        np >= 0;
+        np--
+    ) {
+
 
         const range =
             ranges.find(
-                r => r.grade === note
+                r =>
+                    r.grade === np
             );
 
 
-        const threshold =
-            sek1Thresholds.find(
-                t => t.note === note
+        const index =
+            area.thresholds.findIndex(
+                t =>
+                    t.np === np
             );
 
 
-        let percentageFrom =
-            threshold.p;
+        html += `
+
+            <tr>
+
+                <td class="note">
+
+                    ${np}
+
+                </td>
 
 
-        let percentageTo;
+                <td>
+
+                    ${sek2Notes[np]}
+
+                </td>
 
 
-        if (note === 1) {
+                <td>
 
-            percentageTo = 100;
+                    ${range.from}
 
-        } else {
-
-            const higher =
-                sek1Thresholds.find(
-                    t => t.note === note - 1
-                );
-
-            percentageTo =
-                higher
-                ? higher.p - 1
-                : 100;
-
-        }
+                </td>
 
 
-        if (range) {
+                <td>
 
-            html += `
+                    ${range.to}
 
-                <tr>
+                </td>
 
-                    <td class="note">
-                        ${note}
-                    </td>
 
-                    <td>
-                        ${range.from}
-                    </td>
+                <td>
 
-                    <td>
-                        ${range.to}
-                    </td>
+                    ${getPercentageRange(
+                        index,
+                        area.thresholds
+                    )}
 
-                    <td>
-                        ${percentageFrom}–${percentageTo} %
-                    </td>
+                </td>
 
-                </tr>
+            </tr>
 
-            `;
-
-        } else {
-
-            html += `
-
-                <tr>
-
-                    <td class="note">
-                        ${note}
-                    </td>
-
-                    <td>—</td>
-                    <td>—</td>
-
-                    <td>
-                        ${percentageFrom}–${percentageTo} %
-                    </td>
-
-                </tr>
-
-            `;
-
-        }
+        `;
 
     }
 
@@ -649,10 +1385,10 @@ function buildSek1(maxPoints) {
     html += `</table>`;
 
 
-    document.getElementById("sek1").innerHTML =
-        html;
+    return html;
 
 }
+
 
 
 /* =========================================================
@@ -661,44 +1397,234 @@ function buildSek1(maxPoints) {
 
 function generate() {
 
-    const input =
-        document.getElementById("maxPoints");
+
+    const subjectKey =
+        document.getElementById(
+            "subject"
+        ).value;
 
 
-    const maxPoints =
-        Number(input.value);
+    const areaKey =
+        document.getElementById(
+            "area"
+        ).value;
 
+
+    /*
+       Falls die Bereichsauswahl beim
+       ersten Laden noch leer ist.
+    */
 
     if (
-        !Number.isInteger(maxPoints) ||
-        maxPoints <= 0
+        !areaKey
     ) {
-
-        alert(
-            "Bitte eine positive ganze Maximalpunktzahl eingeben."
-        );
 
         return;
 
     }
 
 
-    buildSek2(maxPoints);
+    const subject =
+        subjects[subjectKey];
 
-    buildSek1(maxPoints);
+
+    const area =
+        subject.areas[areaKey];
+
+
+    const maxPoints =
+        Number(
+            document.getElementById(
+                "maxPoints"
+            ).value
+        );
+
+
+    /*
+       Ungültige Eingabe
+    */
+
+    if (
+        !Number.isInteger(
+            maxPoints
+        )
+        ||
+        maxPoints <= 0
+    ) {
+
+
+        document.getElementById(
+            "result"
+        ).innerHTML = `
+
+            <div class="warning">
+
+                <div class="alarm">
+
+                    ⚠️ ALARM DU LAPPEN! ⚠️
+
+                </div>
+
+                Bitte eine positive ganze
+                Maximalpunktzahl eingeben.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    /*
+       Überschrift
+    */
+
+    document.getElementById(
+        "subjectTitle"
+    ).textContent =
+        subject.name +
+        " – " +
+        area.name;
+
+
+
+    /*
+       Rohpunktbereiche berechnen
+    */
+
+    const ranges =
+        createRanges(
+            maxPoints,
+            area
+        );
+
+
+    /*
+       Erwartete Bewertungsstufen
+    */
+
+    const expected =
+        getExpectedGrades(
+            area
+        );
+
+
+    /*
+       Prüfen, welche Stufen tatsächlich
+       einen eigenen Rohpunktbereich haben.
+    */
+
+    const missing = [];
+
+
+    for (
+        const grade of expected
+    ) {
+
+
+        const exists =
+            ranges.some(
+                r =>
+                    r.grade === grade
+            );
+
+
+        if (!exists) {
+
+
+            if (
+                area.type === "sek2"
+            ) {
+
+                missing.push(
+                    grade + " NP"
+                );
+
+            } else {
+
+                missing.push(
+                    "Note " + grade
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /*
+       Wenn eine Bewertungsstufe fehlt:
+       ALARM statt Tabelle.
+    */
+
+    if (
+        missing.length > 0
+    ) {
+
+
+        showAlarm(
+            maxPoints,
+            area,
+            missing
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+       Tabelle erzeugen
+    */
+
+    if (
+        area.type === "sek2"
+    ) {
+
+
+        document.getElementById(
+            "result"
+        ).innerHTML =
+            buildSek2(
+                maxPoints,
+                area,
+                ranges
+            );
+
+    } else {
+
+
+        document.getElementById(
+            "result"
+        ).innerHTML =
+            buildSek1(
+                maxPoints,
+                area,
+                ranges
+            );
+
+    }
 
 }
 
 
+
 /* =========================================================
-   BEIM LADEN AUTOMATISCH BERECHNEN
+   START DER SEITE
    ========================================================= */
 
-generate();
+updateAreas();
 
 </script>
 
+
 </body>
+
 </html>
 
 
