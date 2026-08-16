@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Notenschlüssel</title>
+<title>Notenschlüssel Generator</title>
 
 <style>
 body {
@@ -101,61 +101,77 @@ tr:nth-child(even) {
     font-size: 14px;
     margin-top: 8px;
 }
+
+.warning {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff7ed;
+    border-radius: 8px;
+    color: #9a3412;
+    font-size: 14px;
+}
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
-    <h1>Notenschlüssel Generator</h1>
+<h1>Notenschlüssel Generator</h1>
 
-    <div class="controls">
 
-        <label for="maxPoints">
-            <b>Maximale Punktzahl:</b>
-        </label>
+<div class="controls">
 
-        <input
-            type="number"
-            id="maxPoints"
-            value="50"
-            min="1"
-            step="1"
-        >
+    <label for="maxPoints">
+        <b>Maximale Punktzahl:</b>
+    </label>
 
-        <button onclick="generate()">
-            Berechnen
-        </button>
+    <input
+        type="number"
+        id="maxPoints"
+        value="50"
+        min="1"
+        step="1"
+    >
 
-        <div class="hint">
-            Die Punktintervalle werden automatisch aus den festgelegten Prozentgrenzen berechnet.
-        </div>
+    <button onclick="generate()">
+        Berechnen
+    </button>
 
+    <div class="hint">
+        Jede Rohpunktzahl wird genau einer Bewertung zugeordnet.
     </div>
 
-
-    <!-- SEK II -->
-
-    <h2>Sek II – 15-Punkte-System</h2>
-
-    <div id="sek2"></div>
+</div>
 
 
-    <!-- SEK I -->
+<!-- =====================================================
+     SEK II
+     ===================================================== -->
 
-    <h2>Sek I – Noten 1 bis 6</h2>
+<h2>Sek II – 15-Punkte-System</h2>
 
-    <div id="sek1"></div>
+<div id="sek2"></div>
+
+
+<!-- =====================================================
+     SEK I
+     ===================================================== -->
+
+<h2>Sek I – Noten 1 bis 6</h2>
+
+<div id="sek1"></div>
 
 </div>
+
 
 
 <script>
 
 /* =========================================================
    SEK II
-   Feste Prozentgrenzen
+   Mindestprozente
    ========================================================= */
 
 const sek2Thresholds = [
@@ -180,7 +196,7 @@ const sek2Thresholds = [
 ];
 
 
-/* Zuordnung Notenpunkte → Note */
+/* Notenbezeichnungen */
 
 const sek2Notes = {
 
@@ -211,15 +227,7 @@ const sek2Notes = {
 
 /* =========================================================
    SEK I
-   Feste Prozentgrenzen
-   =========================================================
-
-   Note 1: 90–100 %
-   Note 2: 75–89 %
-   Note 3: 60–74 %
-   Note 4: 45–59 %
-   Note 5: 25–44 %
-   Note 6: 0–24 %
+   Mindestprozente
    ========================================================= */
 
 const sek1Thresholds = [
@@ -235,12 +243,139 @@ const sek1Thresholds = [
 
 
 /* =========================================================
-   SEK II BERECHNEN
+   HILFSFUNKTION:
+   Ermittelt die Bewertung für eine konkrete Rohpunktzahl
    ========================================================= */
 
-function buildSek2(X) {
+function getSek2Grade(points, maxPoints) {
+
+    const percentage = points / maxPoints * 100;
+
+    for (let i = 0; i < sek2Thresholds.length; i++) {
+
+        if (percentage >= sek2Thresholds[i].p) {
+
+            return sek2Thresholds[i].np;
+
+        }
+
+    }
+
+    return 0;
+}
+
+
+
+function getSek1Grade(points, maxPoints) {
+
+    const percentage = points / maxPoints * 100;
+
+    for (let i = 0; i < sek1Thresholds.length; i++) {
+
+        if (percentage >= sek1Thresholds[i].p) {
+
+            return sek1Thresholds[i].note;
+
+        }
+
+    }
+
+    return 6;
+}
+
+
+/* =========================================================
+   AUS ROHPUNKTEN BEREICHE BILDEN
+   ========================================================= */
+
+function createRanges(maxPoints, gradeFunction, grades) {
+
+    const ranges = [];
+
+    let currentGrade = null;
+    let start = null;
+
+    for (let points = 0; points <= maxPoints; points++) {
+
+        const grade = gradeFunction(points, maxPoints);
+
+
+        /*
+        Neue Bewertung beginnt
+        */
+
+        if (grade !== currentGrade) {
+
+            /*
+            Vorherigen Bereich abschließen
+            */
+
+            if (currentGrade !== null) {
+
+                ranges.push({
+
+                    grade: currentGrade,
+                    from: start,
+                    to: points - 1
+
+                });
+
+            }
+
+
+            /*
+            Neuen Bereich beginnen
+            */
+
+            currentGrade = grade;
+            start = points;
+
+        }
+
+    }
+
+
+    /*
+    Letzten Bereich abschließen
+    */
+
+    if (currentGrade !== null) {
+
+        ranges.push({
+
+            grade: currentGrade,
+            from: start,
+            to: maxPoints
+
+        });
+
+    }
+
+
+    return ranges;
+}
+
+
+/* =========================================================
+   SEK II TABELLE
+   ========================================================= */
+
+function buildSek2(maxPoints) {
+
+    const ranges =
+        createRanges(
+            maxPoints,
+            getSek2Grade
+        );
+
+
+    /*
+    Wir zeigen die Notenpunkte von 15 bis 0.
+    Nicht erreichbare Notenpunkte bekommen "—".
+    */
 
     let html = `
+
         <table>
 
             <tr>
@@ -250,75 +385,106 @@ function buildSek2(X) {
                 <th>bis</th>
                 <th>Prozentbereich</th>
             </tr>
+
     `;
 
 
-    for (let i = 0; i < sek2Thresholds.length; i++) {
+    for (let np = 15; np >= 0; np--) {
 
-        const current = sek2Thresholds[i];
-
-        const next =
-            i === 0
-            ? null
-            : sek2Thresholds[i - 1];
+        const range =
+            ranges.find(
+                r => r.grade === np
+            );
 
 
-        /*
-        Mindestpunktzahl für den aktuellen
-        Notenpunkt
-        */
-
-        const von =
-            Math.ceil(current.p * X / 100);
+        const threshold =
+            sek2Thresholds.find(
+                t => t.np === np
+            );
 
 
-        /*
-        Höchster Punktwert vor der nächsten Grenze
-        */
-
-        const bis =
-            next === null
-            ? X
-            : Math.ceil(next.p * X / 100) - 1;
+        let percentageFrom =
+            threshold.p;
 
 
-        /*
-        Prozentanzeige
-        */
-
-        const prozentBis =
-            next === null
-            ? 100
-            : next.p - 1;
+        let percentageTo;
 
 
-        html += `
+        if (np === 15) {
 
-            <tr>
+            percentageTo = 100;
 
-                <td class="note">
-                    ${current.np}
-                </td>
+        } else {
 
-                <td>
-                    ${sek2Notes[current.np]}
-                </td>
+            const higher =
+                sek2Thresholds.find(
+                    t => t.np === np + 1
+                );
 
-                <td>
-                    ${von}
-                </td>
+            percentageTo =
+                higher
+                ? higher.p - 0.1
+                : 100;
 
-                <td>
-                    ${bis}
-                </td>
+        }
 
-                <td>
-                    ${current.p}–${prozentBis} %
-                </td>
 
-            </tr>
+        if (range) {
 
-        `;
+            html += `
+
+                <tr>
+
+                    <td class="note">
+                        ${np}
+                    </td>
+
+                    <td>
+                        ${sek2Notes[np]}
+                    </td>
+
+                    <td>
+                        ${range.from}
+                    </td>
+
+                    <td>
+                        ${range.to}
+                    </td>
+
+                    <td>
+                        ${percentageFrom}–${percentageTo} %
+                    </td>
+
+                </tr>
+
+            `;
+
+        } else {
+
+            html += `
+
+                <tr>
+
+                    <td class="note">
+                        ${np}
+                    </td>
+
+                    <td>
+                        ${sek2Notes[np]}
+                    </td>
+
+                    <td>—</td>
+                    <td>—</td>
+
+                    <td>
+                        ${percentageFrom}–${percentageTo} %
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
 
     }
 
@@ -326,16 +492,53 @@ function buildSek2(X) {
     html += `</table>`;
 
 
-    document.getElementById("sek2").innerHTML = html;
+    document.getElementById("sek2").innerHTML =
+        html;
+
+
+    /*
+    Hinweis bei kleinen Punktzahlen
+    */
+
+    const missing =
+        ranges.length < 16;
+
+
+    if (missing) {
+
+        document.getElementById("sek2").innerHTML += `
+
+            <div class="warning">
+
+                Bei dieser Maximalpunktzahl sind nicht alle
+                16 Notenpunkte als eigene Rohpunktbereiche
+                darstellbar. Die betroffenen Notenpunkte
+                werden deshalb mit „—“ angezeigt.
+
+                Jede Rohpunktzahl wird trotzdem eindeutig
+                genau einem Notenpunkt zugeordnet.
+
+            </div>
+
+        `;
+
+    }
 
 }
 
 
 /* =========================================================
-   SEK I BERECHNEN
+   SEK I TABELLE
    ========================================================= */
 
-function buildSek1(X) {
+function buildSek1(maxPoints) {
+
+    const ranges =
+        createRanges(
+            maxPoints,
+            getSek1Grade
+        );
+
 
     let html = `
 
@@ -351,99 +554,94 @@ function buildSek1(X) {
     `;
 
 
-    for (let i = 0; i < sek1Thresholds.length; i++) {
+    for (let note = 1; note <= 6; note++) {
 
-        const current = sek1Thresholds[i];
-
-
-        /*
-        Untergrenze
-        */
-
-        let von;
+        const range =
+            ranges.find(
+                r => r.grade === note
+            );
 
 
-        /*
-        Obergrenze
-        */
-
-        let bis;
-
-
-        /* Note 1 */
-
-        if (i === 0) {
-
-            von = Math.ceil(0.90 * X);
-
-            bis = X;
-
-        }
+        const threshold =
+            sek1Thresholds.find(
+                t => t.note === note
+            );
 
 
-        /* Note 2–5 */
-
-        else if (i < sek1Thresholds.length - 1) {
-
-            von =
-                Math.ceil(current.p * X / 100);
+        let percentageFrom =
+            threshold.p;
 
 
-            bis =
-                Math.ceil(
-                    sek1Thresholds[i - 1].p * X / 100
-                ) - 1;
+        let percentageTo;
+
+
+        if (note === 1) {
+
+            percentageTo = 100;
+
+        } else {
+
+            const higher =
+                sek1Thresholds.find(
+                    t => t.note === note - 1
+                );
+
+            percentageTo =
+                higher
+                ? higher.p - 1
+                : 100;
 
         }
 
 
-        /* Note 6 */
+        if (range) {
 
-        else {
+            html += `
 
-            von = 0;
+                <tr>
 
-            bis =
-                Math.ceil(
-                    sek1Thresholds[i - 1].p * X / 100
-                ) - 1;
+                    <td class="note">
+                        ${note}
+                    </td>
+
+                    <td>
+                        ${range.from}
+                    </td>
+
+                    <td>
+                        ${range.to}
+                    </td>
+
+                    <td>
+                        ${percentageFrom}–${percentageTo} %
+                    </td>
+
+                </tr>
+
+            `;
+
+        } else {
+
+            html += `
+
+                <tr>
+
+                    <td class="note">
+                        ${note}
+                    </td>
+
+                    <td>—</td>
+                    <td>—</td>
+
+                    <td>
+                        ${percentageFrom}–${percentageTo} %
+                    </td>
+
+                </tr>
+
+            `;
 
         }
-
-
-        /*
-        Prozentbereich
-        */
-
-        const prozentBis =
-            i === 0
-            ? 100
-            : sek1Thresholds[i - 1].p - 1;
-
-
-        html += `
-
-            <tr>
-
-                <td class="note">
-                    ${current.note}
-                </td>
-
-                <td>
-                    ${von}
-                </td>
-
-                <td>
-                    ${bis}
-                </td>
-
-                <td>
-                    ${current.p}–${prozentBis} %
-                </td>
-
-            </tr>
-
-        `;
 
     }
 
@@ -451,7 +649,8 @@ function buildSek1(X) {
     html += `</table>`;
 
 
-    document.getElementById("sek1").innerHTML = html;
+    document.getElementById("sek1").innerHTML =
+        html;
 
 }
 
@@ -466,11 +665,14 @@ function generate() {
         document.getElementById("maxPoints");
 
 
-    const X =
+    const maxPoints =
         Number(input.value);
 
 
-    if (!Number.isInteger(X) || X <= 0) {
+    if (
+        !Number.isInteger(maxPoints) ||
+        maxPoints <= 0
+    ) {
 
         alert(
             "Bitte eine positive ganze Maximalpunktzahl eingeben."
@@ -481,15 +683,15 @@ function generate() {
     }
 
 
-    buildSek2(X);
+    buildSek2(maxPoints);
 
-    buildSek1(X);
+    buildSek1(maxPoints);
 
 }
 
 
 /* =========================================================
-   SEITE BEIM START BERECHNEN
+   BEIM LADEN AUTOMATISCH BERECHNEN
    ========================================================= */
 
 generate();
