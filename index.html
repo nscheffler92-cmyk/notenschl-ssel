@@ -4,9 +4,12 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Bewertungsmaßstab Lingemann</title>
+
 
 <style>
 
@@ -15,6 +18,7 @@
    ========================================================= */
 
 body {
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -23,75 +27,125 @@ body {
         sans-serif;
 
     padding: 30px;
+
     background: #f5f7fa;
+
     color: #1f2937;
 }
 
+
 .container {
+
     max-width: 1000px;
+
     margin: auto;
 }
 
+
 h1 {
+
     text-align: center;
+
     margin-bottom: 28px;
 }
 
+
 h2 {
+
     margin-top: 30px;
 }
 
 
+
 /* =========================================================
-   AUSWAHL
+   AUSWAHLBEREICH
    ========================================================= */
 
 .controls {
+
     text-align: center;
+
     background: white;
+
     padding: 22px;
+
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 10px
+        rgba(0,0,0,0.08);
+
+    margin-bottom: 20px;
 }
+
 
 select,
 input,
 button {
+
     padding: 9px 12px;
+
     font-size: 16px;
+
     margin: 5px;
 }
 
+
 select {
-    border: 1px solid #cbd5e1;
+
+    border:
+        1px solid #cbd5e1;
+
     border-radius: 6px;
+
     background: white;
+
+    min-width: 220px;
 }
+
 
 input {
+
     width: 100px;
-    border: 1px solid #cbd5e1;
+
+    border:
+        1px solid #cbd5e1;
+
     border-radius: 6px;
 }
 
+
 button {
+
     background: #2d6cdf;
+
     color: white;
+
     border: none;
+
     border-radius: 6px;
+
     cursor: pointer;
+
     font-weight: 600;
 }
 
+
 button:hover {
+
     background: #1f4fb5;
 }
 
+
 .hint {
+
     color: #64748b;
+
     font-size: 14px;
+
     margin-top: 8px;
 }
+
 
 
 /* =========================================================
@@ -99,12 +153,20 @@ button:hover {
    ========================================================= */
 
 .subject-title {
+
     text-align: center;
+
     margin-top: 25px;
+
+    margin-bottom: 15px;
+
     font-size: 20px;
+
     font-weight: 700;
+
     color: #2d6cdf;
 }
+
 
 
 /* =========================================================
@@ -112,38 +174,62 @@ button:hover {
    ========================================================= */
 
 table {
+
     border-collapse: collapse;
+
     margin-top: 20px;
+
     width: 100%;
+
     background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 8px
+        rgba(0,0,0,0.08);
+
     border-radius: 10px;
+
     overflow: hidden;
 }
 
+
 th {
+
     background: #2d6cdf;
+
     color: white;
 }
 
+
 th,
 td {
+
     padding: 10px;
+
     text-align: center;
-    border-bottom: 1px solid #e5e7eb;
+
+    border-bottom:
+        1px solid #e5e7eb;
 }
 
+
 tr:last-child td {
+
     border-bottom: none;
 }
 
+
 tr:nth-child(even) {
+
     background: #f8fafc;
 }
 
+
 .note {
+
     font-weight: 700;
 }
+
 
 
 /* =========================================================
@@ -151,27 +237,47 @@ tr:nth-child(even) {
    ========================================================= */
 
 .warning {
+
     margin-top: 20px;
+
     padding: 20px;
+
     background: #fff1f2;
-    border: 3px solid #dc2626;
+
+    border:
+        3px solid #dc2626;
+
     border-radius: 12px;
+
     text-align: center;
+
     color: #991b1b;
-    box-shadow: 0 3px 10px rgba(220,38,38,0.15);
+
+    box-shadow:
+        0 3px 10px
+        rgba(220,38,38,0.15);
 }
 
+
 .alarm {
+
     color: #dc2626;
+
     font-size: 24px;
+
     font-weight: 900;
+
     margin-bottom: 12px;
 }
 
+
 .warning-text {
+
     font-size: 15px;
+
     line-height: 1.5;
 }
+
 
 
 /* =========================================================
@@ -179,37 +285,64 @@ tr:nth-child(even) {
    ========================================================= */
 
 .textproduction {
+
     background: white;
+
     margin-top: 20px;
+
     padding: 22px;
+
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 8px
+        rgba(0,0,0,0.08);
 }
 
+
 .textproduction table {
+
     box-shadow: none;
+
     margin-top: 10px;
 }
 
+
 .result-box {
+
     margin-top: 20px;
+
     padding: 20px;
+
     background: #f8fafc;
+
     border-radius: 10px;
+
     text-align: center;
 }
 
+
 .big-result {
+
     font-size: 28px;
+
     font-weight: 800;
+
     color: #2d6cdf;
+
+    margin: 5px 0;
 }
 
+
 .small-note {
+
     color: #64748b;
+
     font-size: 14px;
+
     margin-top: 8px;
 }
+
 
 
 /* =========================================================
@@ -219,18 +352,31 @@ tr:nth-child(even) {
 @media (max-width: 700px) {
 
     body {
+
         padding: 15px;
     }
 
+
     table {
+
         font-size: 14px;
+
         display: block;
+
         overflow-x: auto;
     }
 
+
     th,
     td {
+
         padding: 7px 5px;
+    }
+
+
+    select {
+
+        min-width: 180px;
     }
 
 }
@@ -240,15 +386,19 @@ tr:nth-child(even) {
 </head>
 
 
+
 <body>
+
 
 
 <div class="container">
 
 
+
 <h1>
     Bewertungsmaßstab Lingemann
 </h1>
+
 
 
 <!-- =====================================================
@@ -257,9 +407,13 @@ tr:nth-child(even) {
 
 <div class="controls">
 
+
     <label for="subject">
+
         <b>Fach:</b>
+
     </label>
+
 
     <select
         id="subject"
@@ -285,12 +439,17 @@ tr:nth-child(even) {
     </select>
 
 
+
     <br>
 
 
+
     <label for="area">
+
         <b>Bereich:</b>
+
     </label>
+
 
     <select
         id="area"
@@ -298,12 +457,17 @@ tr:nth-child(even) {
     ></select>
 
 
+
     <br>
 
 
+
     <label for="maxPoints">
+
         <b>Maximale Punktzahl:</b>
+
     </label>
+
 
     <input
         type="number"
@@ -315,19 +479,31 @@ tr:nth-child(even) {
     >
 
 
-    <button onclick="generate()">
+    <button
+        onclick="generate()"
+    >
+
         Berechnen
+
     </button>
+
 
 
     <div class="hint">
 
-        Die Punktintervalle werden automatisch aus
-        den festgelegten Prozentgrenzen berechnet.
+        Bei normalen Bewertungsmaßstäben
+        die maximale Punktzahl eingeben.
+
+        <br>
+
+        Bei der Textproduktion werden
+        die Punkte direkt unten eingegeben.
 
     </div>
 
+
 </div>
+
 
 
 <div
@@ -336,14 +512,18 @@ tr:nth-child(even) {
 </div>
 
 
+
 <div id="result"></div>
+
 
 
 </div>
 
 
 
+
 <script>
+
 
 
 /* =========================================================
@@ -351,6 +531,7 @@ tr:nth-child(even) {
    ========================================================= */
 
 const subjects = {
+
 
 
 /* =========================================================
@@ -363,6 +544,7 @@ mathematik: {
 
     areas: {
 
+
         sek1: {
 
             name: "Sek I",
@@ -372,10 +554,15 @@ mathematik: {
             thresholds: [
 
                 { note: 1, p: 90 },
+
                 { note: 2, p: 75 },
+
                 { note: 3, p: 60 },
+
                 { note: 4, p: 45 },
+
                 { note: 5, p: 25 },
+
                 { note: 6, p: 0 }
 
             ]
@@ -392,20 +579,35 @@ mathematik: {
             thresholds: [
 
                 { np: 15, p: 95 },
+
                 { np: 14, p: 90 },
+
                 { np: 13, p: 85 },
+
                 { np: 12, p: 80 },
+
                 { np: 11, p: 75 },
+
                 { np: 10, p: 70 },
+
                 { np: 9, p: 65 },
+
                 { np: 8, p: 60 },
+
                 { np: 7, p: 55 },
+
                 { np: 6, p: 50 },
+
                 { np: 5, p: 45 },
+
                 { np: 4, p: 40 },
+
                 { np: 3, p: 33 },
+
                 { np: 2, p: 27 },
+
                 { np: 1, p: 20 },
+
                 { np: 0, p: 0 }
 
             ]
@@ -415,6 +617,7 @@ mathematik: {
     }
 
 },
+
 
 
 /* =========================================================
@@ -427,6 +630,7 @@ physik: {
 
     areas: {
 
+
         sek1: {
 
             name: "Sek I",
@@ -436,10 +640,15 @@ physik: {
             thresholds: [
 
                 { note: 1, p: 90 },
+
                 { note: 2, p: 75 },
+
                 { note: 3, p: 60 },
+
                 { note: 4, p: 45 },
+
                 { note: 5, p: 25 },
+
                 { note: 6, p: 0 }
 
             ]
@@ -456,20 +665,35 @@ physik: {
             thresholds: [
 
                 { np: 15, p: 95 },
+
                 { np: 14, p: 90 },
+
                 { np: 13, p: 85 },
+
                 { np: 12, p: 80 },
+
                 { np: 11, p: 75 },
+
                 { np: 10, p: 70 },
+
                 { np: 9, p: 65 },
+
                 { np: 8, p: 60 },
+
                 { np: 7, p: 55 },
+
                 { np: 6, p: 50 },
+
                 { np: 5, p: 45 },
+
                 { np: 4, p: 40 },
+
                 { np: 3, p: 33 },
+
                 { np: 2, p: 27 },
+
                 { np: 1, p: 20 },
+
                 { np: 0, p: 0 }
 
             ]
@@ -479,6 +703,7 @@ physik: {
     }
 
 },
+
 
 
 /* =========================================================
@@ -492,8 +717,6 @@ biologie: {
     areas: {
 
 
-        /* SEK I KLASSE 5–8 */
-
         sek1_5_8: {
 
             name: "Sek I – Klasse 5–8",
@@ -503,18 +726,21 @@ biologie: {
             thresholds: [
 
                 { note: 1, p: 95 },
+
                 { note: 2, p: 85 },
+
                 { note: 3, p: 65 },
+
                 { note: 4, p: 50 },
+
                 { note: 5, p: 25 },
+
                 { note: 6, p: 0 }
 
             ]
 
         },
 
-
-        /* SEK I KLASSE 9–10 */
 
         sek1_9_10: {
 
@@ -525,18 +751,21 @@ biologie: {
             thresholds: [
 
                 { note: 1, p: 90 },
+
                 { note: 2, p: 75 },
+
                 { note: 3, p: 60 },
+
                 { note: 4, p: 45 },
+
                 { note: 5, p: 25 },
+
                 { note: 6, p: 0 }
 
             ]
 
         },
 
-
-        /* SEK II KURSARBEIT */
 
         sek2_kursarbeit: {
 
@@ -547,28 +776,41 @@ biologie: {
             thresholds: [
 
                 { np: 15, p: 95 },
+
                 { np: 14, p: 90 },
+
                 { np: 13, p: 85 },
+
                 { np: 12, p: 80 },
+
                 { np: 11, p: 75 },
+
                 { np: 10, p: 70 },
+
                 { np: 9, p: 65 },
+
                 { np: 8, p: 60 },
+
                 { np: 7, p: 55 },
+
                 { np: 6, p: 50 },
+
                 { np: 5, p: 45 },
+
                 { np: 4, p: 40 },
+
                 { np: 3, p: 30 },
+
                 { np: 2, p: 27 },
+
                 { np: 1, p: 20 },
+
                 { np: 0, p: 0 }
 
             ]
 
         },
 
-
-        /* SEK II SONSTIGE LEISTUNGEN */
 
         sek2_sonstige: {
 
@@ -579,20 +821,35 @@ biologie: {
             thresholds: [
 
                 { np: 15, p: 98 },
+
                 { np: 14, p: 95 },
+
                 { np: 13, p: 92 },
+
                 { np: 12, p: 85 },
+
                 { np: 11, p: 80 },
+
                 { np: 10, p: 75 },
+
                 { np: 9, p: 70 },
+
                 { np: 8, p: 65 },
+
                 { np: 7, p: 60 },
+
                 { np: 6, p: 55 },
+
                 { np: 5, p: 50 },
+
                 { np: 4, p: 45 },
+
                 { np: 3, p: 40 },
+
                 { np: 2, p: 30 },
+
                 { np: 1, p: 20 },
+
                 { np: 0, p: 0 }
 
             ]
@@ -602,6 +859,7 @@ biologie: {
     }
 
 },
+
 
 
 /* =========================================================
@@ -615,23 +873,28 @@ englisch: {
     areas: {
 
 
-        /* =================================================
-           KLASSEN 5–10 KLASSENARBEITEN
-           ================================================= */
+        /* -------------------------------------------------
+           SEK I – KLASSENARBEITEN
+           ------------------------------------------------- */
 
-        englisch_klassenarbeiten: {
+        klassenarbeiten: {
 
-            name: "Klasse 5–10 – Klassenarbeiten",
+            name: "Sek I – Klassenarbeiten",
 
             type: "sek1",
 
             thresholds: [
 
                 { note: 1, p: 92 },
+
                 { note: 2, p: 80 },
+
                 { note: 3, p: 65 },
+
                 { note: 4, p: 50 },
+
                 { note: 5, p: 30 },
+
                 { note: 6, p: 0 }
 
             ]
@@ -639,23 +902,28 @@ englisch: {
         },
 
 
-        /* =================================================
-           KLASSEN 5–10 SONSTIGE LEISTUNGEN
-           ================================================= */
+        /* -------------------------------------------------
+           SEK I – SONSTIGE LEISTUNGEN
+           ------------------------------------------------- */
 
-        englisch_sonstige: {
+        sonstige: {
 
-            name: "Klasse 5–10 – Sonstige Leistungen",
+            name: "Sek I – Sonstige Leistungen",
 
             type: "sek1",
 
             thresholds: [
 
                 { note: 1, p: 95 },
+
                 { note: 2, p: 83 },
+
                 { note: 3, p: 65 },
+
                 { note: 4, p: 50 },
+
                 { note: 5, p: 35 },
+
                 { note: 6, p: 0 }
 
             ]
@@ -663,20 +931,22 @@ englisch: {
         },
 
 
-        /* =================================================
-           TEXTPRODUKTION KLASSE 5/6
-           ================================================= */
+        /* -------------------------------------------------
+           TEXTPRODUKTION 5/6
+           ------------------------------------------------- */
 
         text_5_6: {
 
-            name: "Textproduktion – Klasse 5/6",
+            name: "Sek I – Textproduktion Klasse 5/6",
 
             type: "text",
 
             weights: {
 
                 content: 60,
+
                 correctness: 25,
+
                 style: 15
 
             }
@@ -684,20 +954,22 @@ englisch: {
         },
 
 
-        /* =================================================
-           TEXTPRODUKTION KLASSE 7/8
-           ================================================= */
+        /* -------------------------------------------------
+           TEXTPRODUKTION 7/8
+           ------------------------------------------------- */
 
         text_7_8: {
 
-            name: "Textproduktion – Klasse 7/8",
+            name: "Sek I – Textproduktion Klasse 7/8",
 
             type: "text",
 
             weights: {
 
                 content: 50,
+
                 correctness: 30,
+
                 style: 20
 
             }
@@ -705,20 +977,22 @@ englisch: {
         },
 
 
-        /* =================================================
-           TEXTPRODUKTION KLASSE 9/10
-           ================================================= */
+        /* -------------------------------------------------
+           TEXTPRODUKTION 9/10
+           ------------------------------------------------- */
 
         text_9_10: {
 
-            name: "Textproduktion – Klasse 9/10",
+            name: "Sek I – Textproduktion Klasse 9/10",
 
             type: "text",
 
             weights: {
 
                 content: 45,
+
                 correctness: 30,
+
                 style: 25
 
             }
@@ -726,11 +1000,11 @@ englisch: {
         },
 
 
-        /* =================================================
-           SEK II KURSARBEIT
-           ================================================= */
+        /* -------------------------------------------------
+           SEK II – KURSARBEIT
+           ------------------------------------------------- */
 
-        englisch_sek2_kursarbeit: {
+        sek2_kursarbeit: {
 
             name: "Sek II – Kursarbeit",
 
@@ -739,20 +1013,35 @@ englisch: {
             thresholds: [
 
                 { np: 15, p: 95 },
+
                 { np: 14, p: 90 },
+
                 { np: 13, p: 85 },
+
                 { np: 12, p: 80 },
+
                 { np: 11, p: 75 },
+
                 { np: 10, p: 70 },
+
                 { np: 9, p: 65 },
+
                 { np: 8, p: 60 },
+
                 { np: 7, p: 55 },
+
                 { np: 6, p: 50 },
+
                 { np: 5, p: 45 },
+
                 { np: 4, p: 40 },
+
                 { np: 3, p: 33 },
+
                 { np: 2, p: 27 },
+
                 { np: 1, p: 20 },
+
                 { np: 0, p: 0 }
 
             ]
@@ -760,11 +1049,11 @@ englisch: {
         },
 
 
-        /* =================================================
-           SEK II SONSTIGE LEISTUNGEN
-           ================================================= */
+        /* -------------------------------------------------
+           SEK II – SONSTIGE LEISTUNGEN
+           ------------------------------------------------- */
 
-        englisch_sek2_sonstige: {
+        sek2_sonstige: {
 
             name: "Sek II – Sonstige Leistungen",
 
@@ -773,20 +1062,35 @@ englisch: {
             thresholds: [
 
                 { np: 15, p: 98 },
+
                 { np: 14, p: 95 },
+
                 { np: 13, p: 92 },
+
                 { np: 12, p: 85 },
+
                 { np: 11, p: 80 },
+
                 { np: 10, p: 75 },
+
                 { np: 9, p: 70 },
+
                 { np: 8, p: 65 },
+
                 { np: 7, p: 60 },
+
                 { np: 6, p: 55 },
+
                 { np: 5, p: 50 },
+
                 { np: 4, p: 45 },
+
                 { np: 3, p: 40 },
+
                 { np: 2, p: 35 },
+
                 { np: 1, p: 30 },
+
                 { np: 0, p: 0 }
 
             ]
@@ -800,7 +1104,7 @@ englisch: {
 
 
 /* =========================================================
-   SEK-II-NOTEN
+   SEK-II-NOTENBEZEICHNUNGEN
    ========================================================= */
 
 const sek2Notes = {
@@ -832,10 +1136,11 @@ const sek2Notes = {
 
 
 /* =========================================================
-   BEREICHE AKTUALISIEREN
+   BEREICHE IN AUSWAHLMENÜ EINTRAGEN
    ========================================================= */
 
 function updateAreas() {
+
 
     const subjectKey =
         document.getElementById(
@@ -860,13 +1165,15 @@ function updateAreas() {
         const key in subject.areas
     ) {
 
+
         const option =
             document.createElement(
                 "option"
             );
 
 
-        option.value = key;
+        option.value =
+            key;
 
 
         option.textContent =
@@ -887,7 +1194,7 @@ function updateAreas() {
 
 
 /* =========================================================
-   NOTE ERMITTELN
+   NOTE AUS PROZENT ERMITTELN
    ========================================================= */
 
 function getGrade(
@@ -896,8 +1203,11 @@ function getGrade(
     area
 ) {
 
+
     const percentage =
-        points / maxPoints * 100;
+        points /
+        maxPoints *
+        100;
 
 
     for (
@@ -905,6 +1215,7 @@ function getGrade(
         i < area.thresholds.length;
         i++
     ) {
+
 
         const threshold =
             area.thresholds[i];
@@ -915,17 +1226,17 @@ function getGrade(
             threshold.p
         ) {
 
+
             if (
                 area.type === "sek2"
             ) {
 
                 return threshold.np;
 
-            } else {
-
-                return threshold.note;
-
             }
+
+
+            return threshold.note;
 
         }
 
@@ -949,11 +1260,16 @@ function createRanges(
     area
 ) {
 
+
     const ranges = [];
 
-    let currentGrade = null;
 
-    let start = null;
+    let currentGrade =
+        null;
+
+
+    let start =
+        null;
 
 
     for (
@@ -961,6 +1277,7 @@ function createRanges(
         points <= maxPoints;
         points++
     ) {
+
 
         const grade =
             getGrade(
@@ -971,20 +1288,26 @@ function createRanges(
 
 
         if (
-            grade !== currentGrade
+            grade !==
+            currentGrade
         ) {
+
 
             if (
                 currentGrade !== null
             ) {
 
+
                 ranges.push({
 
-                    grade: currentGrade,
+                    grade:
+                        currentGrade,
 
-                    from: start,
+                    from:
+                        start,
 
-                    to: points - 1
+                    to:
+                        points - 1
 
                 });
 
@@ -1007,13 +1330,17 @@ function createRanges(
         currentGrade !== null
     ) {
 
+
         ranges.push({
 
-            grade: currentGrade,
+            grade:
+                currentGrade,
 
-            from: start,
+            from:
+                start,
 
-            to: maxPoints
+            to:
+                maxPoints
 
         });
 
@@ -1027,13 +1354,14 @@ function createRanges(
 
 
 /* =========================================================
-   PROZENTBEREICH
+   PROZENTBEREICH AUSGEBEN
    ========================================================= */
 
 function getPercentageRange(
     index,
     thresholds
 ) {
+
 
     const current =
         thresholds[index];
@@ -1046,7 +1374,8 @@ function getPercentageRange(
         index === 0
     ) {
 
-        upper = 100;
+        upper =
+            100;
 
     } else {
 
@@ -1077,6 +1406,7 @@ function showAlarm(
     missing
 ) {
 
+
     document.getElementById(
         "result"
     ).innerHTML = `
@@ -1096,7 +1426,9 @@ function showAlarm(
                     Keine eindeutige Verteilung möglich.
                 </strong>
 
+
                 <br><br>
+
 
                 Bei einer Maximalpunktzahl von
 
@@ -1112,10 +1444,13 @@ function showAlarm(
                 </strong>
 
                 nicht auf alle Bewertungsstufen
-                mit jeweils mindestens einer eigenen
-                Rohpunktzahl abgebildet werden.
+                mit jeweils mindestens einer
+                eigenen Rohpunktzahl
+                abgebildet werden.
+
 
                 <br><br>
+
 
                 Betroffene Bewertungsstufen:
 
@@ -1123,10 +1458,12 @@ function showAlarm(
                     ${missing.join(", ")}
                 </strong>
 
+
                 <br><br>
 
-                Bitte eine höhere Maximalpunktzahl
-                verwenden.
+
+                Bitte eine höhere
+                Maximalpunktzahl verwenden.
 
             </div>
 
@@ -1147,16 +1484,28 @@ function buildSek1(
     ranges
 ) {
 
+
     let html = `
 
         <table>
 
             <tr>
 
-                <th>Note</th>
-                <th>von</th>
-                <th>bis</th>
-                <th>Prozentbereich</th>
+                <th>
+                    Note
+                </th>
+
+                <th>
+                    von
+                </th>
+
+                <th>
+                    bis
+                </th>
+
+                <th>
+                    Prozentbereich
+                </th>
 
             </tr>
 
@@ -1168,6 +1517,7 @@ function buildSek1(
         note <= 6;
         note++
     ) {
+
 
         const range =
             ranges.find(
@@ -1215,6 +1565,7 @@ function buildSek1(
 
     html += "</table>";
 
+
     return html;
 
 }
@@ -1230,17 +1581,32 @@ function buildSek2(
     ranges
 ) {
 
+
     let html = `
 
         <table>
 
             <tr>
 
-                <th>NP</th>
-                <th>Note</th>
-                <th>von</th>
-                <th>bis</th>
-                <th>Prozentbereich</th>
+                <th>
+                    NP
+                </th>
+
+                <th>
+                    Note
+                </th>
+
+                <th>
+                    von
+                </th>
+
+                <th>
+                    bis
+                </th>
+
+                <th>
+                    Prozentbereich
+                </th>
 
             </tr>
 
@@ -1252,6 +1618,7 @@ function buildSek2(
         np >= 0;
         np--
     ) {
+
 
         const range =
             ranges.find(
@@ -1303,6 +1670,7 @@ function buildSek2(
 
     html += "</table>";
 
+
     return html;
 
 }
@@ -1310,12 +1678,13 @@ function buildSek2(
 
 
 /* =========================================================
-   TEXTPRODUKTION
+   TEXTPRODUKTION AUFBAUEN
    ========================================================= */
 
 function buildTextProduction(
     area
 ) {
+
 
     const weights =
         area.weights;
@@ -1332,21 +1701,25 @@ function buildTextProduction(
 
             <p>
 
-                Gewichtung:
+                <strong>
+                    Gewichtung:
+                </strong>
 
-                <strong>
-                    Content ${weights.content} %
-                </strong>
+                Content
+                ${weights.content} %
+
                 ·
-                <strong>
-                    Correctness ${weights.correctness} %
-                </strong>
+
+                Correctness
+                ${weights.correctness} %
+
                 ·
-                <strong>
-                    Style ${weights.style} %
-                </strong>
+
+                Style
+                ${weights.style} %
 
             </p>
+
 
 
             <table>
@@ -1383,6 +1756,9 @@ function buildTextProduction(
 
                 </tr>
 
+
+
+                <!-- CONTENT -->
 
                 <tr>
 
@@ -1438,6 +1814,9 @@ function buildTextProduction(
                 </tr>
 
 
+
+                <!-- CORRECTNESS -->
+
                 <tr>
 
                     <td>
@@ -1491,6 +1870,9 @@ function buildTextProduction(
 
                 </tr>
 
+
+
+                <!-- STYLE -->
 
                 <tr>
 
@@ -1548,11 +1930,15 @@ function buildTextProduction(
             </table>
 
 
+
+            <!-- GESAMTERGEBNIS -->
+
             <div class="result-box">
 
                 <div>
                     Gesamtleistung
                 </div>
+
 
                 <div
                     id="textTotal"
@@ -1561,6 +1947,7 @@ function buildTextProduction(
                     0 %
                 </div>
 
+
                 <div
                     id="textGrade"
                     class="big-result"
@@ -1568,11 +1955,18 @@ function buildTextProduction(
                     Note 6
                 </div>
 
+
                 <div class="small-note">
 
-                    Die Gesamtnote wird anhand des
-                    Englisch-Klassenarbeits-Schlüssels
-                    für Klasse 5–10 bestimmt.
+                    Die Einzelnoten werden jeweils
+                    nach dem Englisch-Schlüssel
+                    für Klassenarbeiten berechnet.
+
+                    <br>
+
+                    Die Gesamtnote wird aus der
+                    gewichteten Gesamtleistung
+                    berechnet.
 
                 </div>
 
@@ -1622,8 +2016,9 @@ function calculateText() {
         area.weights;
 
 
+
     /* -----------------------------------------------------
-       PUNKTE
+       PUNKTE EINLESEN
        ----------------------------------------------------- */
 
     const contentGot =
@@ -1674,41 +2069,53 @@ function calculateText() {
         );
 
 
+
     /* -----------------------------------------------------
-       PROZENTE
+       PROZENTE BERECHNEN
        ----------------------------------------------------- */
 
     const contentPercent =
         contentMax > 0
-        ? contentGot / contentMax * 100
+        ? contentGot /
+          contentMax *
+          100
         : 0;
 
 
     const correctnessPercent =
         correctnessMax > 0
-        ? correctnessGot / correctnessMax * 100
+        ? correctnessGot /
+          correctnessMax *
+          100
         : 0;
 
 
     const stylePercent =
         styleMax > 0
-        ? styleGot / styleMax * 100
+        ? styleGot /
+          styleMax *
+          100
         : 0;
 
 
+
     /* -----------------------------------------------------
-       ENGLISCH-KLASSENARBEITSSCHLÜSSEL
+       KLASSENARBEITS-SCHLÜSSEL
        ----------------------------------------------------- */
 
     const thresholds =
         subjects
         .englisch
         .areas
-        .englisch_klassenarbeiten
+        .klassenarbeiten
         .thresholds;
 
 
-    function getTextGrade(percent) {
+
+    function getTextGrade(
+        percent
+    ) {
+
 
         for (
             let i = 0;
@@ -1716,20 +2123,24 @@ function calculateText() {
             i++
         ) {
 
+
             if (
                 percent >=
                 thresholds[i].p
             ) {
 
-                return thresholds[i].note;
+                return
+                    thresholds[i].note;
 
             }
 
         }
 
+
         return 6;
 
     }
+
 
 
     /* -----------------------------------------------------
@@ -1754,23 +2165,28 @@ function calculateText() {
         );
 
 
+
     /* -----------------------------------------------------
        GEWICHTETE ANTEILE
        ----------------------------------------------------- */
 
     const contentWeighted =
         contentPercent *
-        weights.content / 100;
+        weights.content /
+        100;
 
 
     const correctnessWeighted =
         correctnessPercent *
-        weights.correctness / 100;
+        weights.correctness /
+        100;
 
 
     const styleWeighted =
         stylePercent *
-        weights.style / 100;
+        weights.style /
+        100;
+
 
 
     /* -----------------------------------------------------
@@ -1789,33 +2205,35 @@ function calculateText() {
         );
 
 
+
     /* -----------------------------------------------------
-       PROZENTE
+       PROZENTE AUSGEBEN
        ----------------------------------------------------- */
 
     document.getElementById(
         "contentPercent"
     ).textContent =
-        contentPercent.toFixed(1) +
-        " %";
+        contentPercent.toFixed(1)
+        + " %";
 
 
     document.getElementById(
         "correctnessPercent"
     ).textContent =
-        correctnessPercent.toFixed(1) +
-        " %";
+        correctnessPercent.toFixed(1)
+        + " %";
 
 
     document.getElementById(
         "stylePercent"
     ).textContent =
-        stylePercent.toFixed(1) +
-        " %";
+        stylePercent.toFixed(1)
+        + " %";
+
 
 
     /* -----------------------------------------------------
-       NOTEN
+       EINZELNOTEN AUSGEBEN
        ----------------------------------------------------- */
 
     document.getElementById(
@@ -1836,46 +2254,49 @@ function calculateText() {
         styleGrade;
 
 
+
     /* -----------------------------------------------------
-       GEWICHTETE WERTE
+       GEWICHTETE WERTE AUSGEBEN
        ----------------------------------------------------- */
 
     document.getElementById(
         "contentWeighted"
     ).textContent =
-        contentWeighted.toFixed(1) +
-        " %";
+        contentWeighted.toFixed(1)
+        + " %";
 
 
     document.getElementById(
         "correctnessWeighted"
     ).textContent =
-        correctnessWeighted.toFixed(1) +
-        " %";
+        correctnessWeighted.toFixed(1)
+        + " %";
 
 
     document.getElementById(
         "styleWeighted"
     ).textContent =
-        styleWeighted.toFixed(1) +
-        " %";
+        styleWeighted.toFixed(1)
+        + " %";
+
 
 
     /* -----------------------------------------------------
-       GESAMT
+       GESAMTERGEBNIS
        ----------------------------------------------------- */
 
     document.getElementById(
         "textTotal"
     ).textContent =
-        total.toFixed(1) +
-        " %";
+        total.toFixed(1)
+        + " %";
 
 
     document.getElementById(
         "textGrade"
     ).textContent =
-        "Note " + totalGrade;
+        "Note " +
+        totalGrade;
 
 }
 
@@ -1917,6 +2338,7 @@ function generate() {
         subject.areas[areaKey];
 
 
+
     /* -----------------------------------------------------
        ÜBERSCHRIFT
        ----------------------------------------------------- */
@@ -1927,6 +2349,7 @@ function generate() {
         subject.name +
         " – " +
         area.name;
+
 
 
     /* -----------------------------------------------------
@@ -1954,8 +2377,9 @@ function generate() {
     }
 
 
+
     /* -----------------------------------------------------
-       NORMALE PUNKTZAHL
+       MAXIMALE PUNKTZAHL
        ----------------------------------------------------- */
 
     const maxPoints =
@@ -1987,8 +2411,10 @@ function generate() {
 
                 </div>
 
-                Bitte eine positive ganze
-                Maximalpunktzahl eingeben.
+
+                Bitte eine positive
+                ganze Maximalpunktzahl
+                eingeben.
 
             </div>
 
@@ -1998,6 +2424,7 @@ function generate() {
         return;
 
     }
+
 
 
     /* -----------------------------------------------------
@@ -2011,23 +2438,46 @@ function generate() {
         );
 
 
+
     /* -----------------------------------------------------
-       ERWARTETE STUFEN
+       ERWARTETE BEWERTUNGSSTUFEN
        ----------------------------------------------------- */
 
     const expected =
         area.type === "sek2"
+
         ? [
-            0,1,2,3,4,5,6,7,
-            8,9,10,11,12,13,14,15
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
           ]
+
         : [
-            1,2,3,4,5,6
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ];
 
 
+
     /* -----------------------------------------------------
-       FEHLENDE STUFEN
+       FEHLENDE STUFEN SUCHEN
        ----------------------------------------------------- */
 
     const missing = [];
@@ -2041,7 +2491,8 @@ function generate() {
         const exists =
             ranges.some(
                 r =>
-                    r.grade === grade
+                    r.grade ===
+                    grade
             );
 
 
@@ -2051,17 +2502,23 @@ function generate() {
 
 
             if (
-                area.type === "sek2"
+                area.type ===
+                "sek2"
             ) {
 
+
                 missing.push(
-                    grade + " NP"
+                    grade +
+                    " NP"
                 );
+
 
             } else {
 
+
                 missing.push(
-                    "Note " + grade
+                    "Note " +
+                    grade
                 );
 
             }
@@ -2069,6 +2526,7 @@ function generate() {
         }
 
     }
+
 
 
     /* -----------------------------------------------------
@@ -2092,12 +2550,14 @@ function generate() {
     }
 
 
+
     /* -----------------------------------------------------
-       TABELLE
+       TABELLE AUSGEBEN
        ----------------------------------------------------- */
 
     if (
-        area.type === "sek2"
+        area.type ===
+        "sek2"
     ) {
 
 
@@ -2133,12 +2593,12 @@ function generate() {
 
 updateAreas();
 
+
 </script>
 
 
 </body>
 
 </html>
-
 
   
