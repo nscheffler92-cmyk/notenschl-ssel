@@ -6,9 +6,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Notenschlüssel Generator</title>
+<title>Bewertungsmaßstab Lingemann</title>
 
 <style>
+
+/* =========================================================
+   GRUNDLAYOUT
+   ========================================================= */
 
 body {
     font-family:
@@ -24,7 +28,7 @@ body {
 }
 
 .container {
-    max-width: 950px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -34,8 +38,13 @@ h1 {
 }
 
 h2 {
-    margin-top: 40px;
+    margin-top: 30px;
 }
+
+
+/* =========================================================
+   AUSWAHL
+   ========================================================= */
 
 .controls {
     text-align: center;
@@ -84,6 +93,11 @@ button:hover {
     margin-top: 8px;
 }
 
+
+/* =========================================================
+   ÜBERSCHRIFT
+   ========================================================= */
+
 .subject-title {
     text-align: center;
     margin-top: 25px;
@@ -91,6 +105,11 @@ button:hover {
     font-weight: 700;
     color: #2d6cdf;
 }
+
+
+/* =========================================================
+   TABELLEN
+   ========================================================= */
 
 table {
     border-collapse: collapse;
@@ -126,6 +145,11 @@ tr:nth-child(even) {
     font-weight: 700;
 }
 
+
+/* =========================================================
+   ALARM
+   ========================================================= */
+
 .warning {
     margin-top: 20px;
     padding: 20px;
@@ -148,6 +172,11 @@ tr:nth-child(even) {
     font-size: 15px;
     line-height: 1.5;
 }
+
+
+/* =========================================================
+   TEXTPRODUKTION
+   ========================================================= */
 
 .textproduction {
     background: white;
@@ -179,9 +208,15 @@ tr:nth-child(even) {
 .small-note {
     color: #64748b;
     font-size: 14px;
+    margin-top: 8px;
 }
 
-@media (max-width: 600px) {
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
 
     body {
         padding: 15px;
@@ -189,11 +224,13 @@ tr:nth-child(even) {
 
     table {
         font-size: 14px;
+        display: block;
+        overflow-x: auto;
     }
 
     th,
     td {
-        padding: 7px 4px;
+        padding: 7px 5px;
     }
 
 }
@@ -210,7 +247,7 @@ tr:nth-child(even) {
 
 
 <h1>
-    Notenschlüssel Generator
+    Bewertungsmaßstab Lingemann
 </h1>
 
 
@@ -284,8 +321,10 @@ tr:nth-child(even) {
 
 
     <div class="hint">
+
         Die Punktintervalle werden automatisch aus
         den festgelegten Prozentgrenzen berechnet.
+
     </div>
 
 </div>
@@ -453,6 +492,8 @@ biologie: {
     areas: {
 
 
+        /* SEK I KLASSE 5–8 */
+
         sek1_5_8: {
 
             name: "Sek I – Klasse 5–8",
@@ -473,6 +514,8 @@ biologie: {
         },
 
 
+        /* SEK I KLASSE 9–10 */
+
         sek1_9_10: {
 
             name: "Sek I – Klasse 9–10",
@@ -492,6 +535,8 @@ biologie: {
 
         },
 
+
+        /* SEK II KURSARBEIT */
 
         sek2_kursarbeit: {
 
@@ -522,6 +567,8 @@ biologie: {
 
         },
 
+
+        /* SEK II SONSTIGE LEISTUNGEN */
 
         sek2_sonstige: {
 
@@ -568,16 +615,9 @@ englisch: {
     areas: {
 
 
-        /* ---------------------------------------------
-           KLASSE 5–10 KLASSENARBEITEN
-           
-           1 = 92–100 %
-           2 = 80–91 %
-           3 = 65–79 %
-           4 = 50–64 %
-           5 = 30–49 %
-           6 = 0–29 %
-           --------------------------------------------- */
+        /* =================================================
+           KLASSEN 5–10 KLASSENARBEITEN
+           ================================================= */
 
         englisch_klassenarbeiten: {
 
@@ -599,9 +639,9 @@ englisch: {
         },
 
 
-        /* ---------------------------------------------
-           KLASSE 5–10 SONSTIGE LEISTUNGEN
-           --------------------------------------------- */
+        /* =================================================
+           KLASSEN 5–10 SONSTIGE LEISTUNGEN
+           ================================================= */
 
         englisch_sonstige: {
 
@@ -623,9 +663,9 @@ englisch: {
         },
 
 
-        /* ---------------------------------------------
+        /* =================================================
            TEXTPRODUKTION KLASSE 5/6
-           --------------------------------------------- */
+           ================================================= */
 
         text_5_6: {
 
@@ -644,9 +684,9 @@ englisch: {
         },
 
 
-        /* ---------------------------------------------
+        /* =================================================
            TEXTPRODUKTION KLASSE 7/8
-           --------------------------------------------- */
+           ================================================= */
 
         text_7_8: {
 
@@ -665,9 +705,9 @@ englisch: {
         },
 
 
-        /* ---------------------------------------------
+        /* =================================================
            TEXTPRODUKTION KLASSE 9/10
-           --------------------------------------------- */
+           ================================================= */
 
         text_9_10: {
 
@@ -686,9 +726,9 @@ englisch: {
         },
 
 
-        /* ---------------------------------------------
+        /* =================================================
            SEK II KURSARBEIT
-           --------------------------------------------- */
+           ================================================= */
 
         englisch_sek2_kursarbeit: {
 
@@ -720,9 +760,9 @@ englisch: {
         },
 
 
-        /* ---------------------------------------------
+        /* =================================================
            SEK II SONSTIGE LEISTUNGEN
-           --------------------------------------------- */
+           ================================================= */
 
         englisch_sek2_sonstige: {
 
@@ -755,14 +795,12 @@ englisch: {
 
     }
 
-}
-
 };
 
 
 
 /* =========================================================
-   SEK-II-NOTENBEZEICHNUNGEN
+   SEK-II-NOTEN
    ========================================================= */
 
 const sek2Notes = {
@@ -804,13 +842,16 @@ function updateAreas() {
             "subject"
         ).value;
 
+
     const subject =
         subjects[subjectKey];
+
 
     const areaSelect =
         document.getElementById(
             "area"
         );
+
 
     areaSelect.innerHTML = "";
 
@@ -824,10 +865,13 @@ function updateAreas() {
                 "option"
             );
 
+
         option.value = key;
+
 
         option.textContent =
             subject.areas[key].name;
+
 
         areaSelect.appendChild(
             option
@@ -843,7 +887,7 @@ function updateAreas() {
 
 
 /* =========================================================
-   BEWERTUNG
+   NOTE ERMITTELN
    ========================================================= */
 
 function getGrade(
@@ -867,7 +911,8 @@ function getGrade(
 
 
         if (
-            percentage >= threshold.p
+            percentage >=
+            threshold.p
         ) {
 
             if (
@@ -896,7 +941,7 @@ function getGrade(
 
 
 /* =========================================================
-   ROHPUNKTBEREICHE
+   ROHPUNKT-BEREICHE ERMITTELN
    ========================================================= */
 
 function createRanges(
@@ -949,6 +994,7 @@ function createRanges(
             currentGrade =
                 grade;
 
+
             start =
                 points;
 
@@ -991,6 +1037,7 @@ function getPercentageRange(
 
     const current =
         thresholds[index];
+
 
     let upper;
 
@@ -1057,8 +1104,8 @@ function showAlarm(
                     ${maxPoints} Punkten
                 </strong>
 
-                können die vorgegebenen Prozentgrenzen
-                für
+                können die vorgegebenen
+                Prozentgrenzen für
 
                 <strong>
                     ${area.name}
@@ -1092,7 +1139,7 @@ function showAlarm(
 
 
 /* =========================================================
-   SEK I TABELLE
+   SEK-I-TABELLE
    ========================================================= */
 
 function buildSek1(
@@ -1175,7 +1222,7 @@ function buildSek1(
 
 
 /* =========================================================
-   SEK II TABELLE
+   SEK-II-TABELLE
    ========================================================= */
 
 function buildSek2(
@@ -1274,14 +1321,6 @@ function buildTextProduction(
         area.weights;
 
 
-    const gradeThresholds =
-        subjects
-        .englisch
-        .areas
-        .englisch_klassenarbeiten
-        .thresholds;
-
-
     let html = `
 
         <div class="textproduction">
@@ -1335,7 +1374,11 @@ function buildTextProduction(
                     </th>
 
                     <th>
-                        Gewichtete Punkte
+                        Note
+                    </th>
+
+                    <th>
+                        Gewichteter Anteil
                     </th>
 
                 </tr>
@@ -1379,6 +1422,13 @@ function buildTextProduction(
 
                     <td id="contentPercent">
                         0 %
+                    </td>
+
+                    <td
+                        id="contentGrade"
+                        class="note"
+                    >
+                        6
                     </td>
 
                     <td id="contentWeighted">
@@ -1428,6 +1478,13 @@ function buildTextProduction(
                         0 %
                     </td>
 
+                    <td
+                        id="correctnessGrade"
+                        class="note"
+                    >
+                        6
+                    </td>
+
                     <td id="correctnessWeighted">
                         0 %
                     </td>
@@ -1475,6 +1532,13 @@ function buildTextProduction(
                         0 %
                     </td>
 
+                    <td
+                        id="styleGrade"
+                        class="note"
+                    >
+                        6
+                    </td>
+
                     <td id="styleWeighted">
                         0 %
                     </td>
@@ -1501,12 +1565,12 @@ function buildTextProduction(
                     id="textGrade"
                     class="big-result"
                 >
-                    —
+                    Note 6
                 </div>
 
                 <div class="small-note">
 
-                    Die Note wird anhand des
+                    Die Gesamtnote wird anhand des
                     Englisch-Klassenarbeits-Schlüssels
                     für Klasse 5–10 bestimmt.
 
@@ -1530,6 +1594,7 @@ function buildTextProduction(
    ========================================================= */
 
 function calculateText() {
+
 
     const areaKey =
         document.getElementById(
@@ -1556,6 +1621,10 @@ function calculateText() {
     const weights =
         area.weights;
 
+
+    /* -----------------------------------------------------
+       PUNKTE
+       ----------------------------------------------------- */
 
     const contentGot =
         Number(
@@ -1605,6 +1674,10 @@ function calculateText() {
         );
 
 
+    /* -----------------------------------------------------
+       PROZENTE
+       ----------------------------------------------------- */
+
     const contentPercent =
         contentMax > 0
         ? contentGot / contentMax * 100
@@ -1623,6 +1696,68 @@ function calculateText() {
         : 0;
 
 
+    /* -----------------------------------------------------
+       ENGLISCH-KLASSENARBEITSSCHLÜSSEL
+       ----------------------------------------------------- */
+
+    const thresholds =
+        subjects
+        .englisch
+        .areas
+        .englisch_klassenarbeiten
+        .thresholds;
+
+
+    function getTextGrade(percent) {
+
+        for (
+            let i = 0;
+            i < thresholds.length;
+            i++
+        ) {
+
+            if (
+                percent >=
+                thresholds[i].p
+            ) {
+
+                return thresholds[i].note;
+
+            }
+
+        }
+
+        return 6;
+
+    }
+
+
+    /* -----------------------------------------------------
+       EINZELNOTEN
+       ----------------------------------------------------- */
+
+    const contentGrade =
+        getTextGrade(
+            contentPercent
+        );
+
+
+    const correctnessGrade =
+        getTextGrade(
+            correctnessPercent
+        );
+
+
+    const styleGrade =
+        getTextGrade(
+            stylePercent
+        );
+
+
+    /* -----------------------------------------------------
+       GEWICHTETE ANTEILE
+       ----------------------------------------------------- */
+
     const contentWeighted =
         contentPercent *
         weights.content / 100;
@@ -1638,11 +1773,25 @@ function calculateText() {
         weights.style / 100;
 
 
+    /* -----------------------------------------------------
+       GESAMT
+       ----------------------------------------------------- */
+
     const total =
         contentWeighted +
         correctnessWeighted +
         styleWeighted;
 
+
+    const totalGrade =
+        getTextGrade(
+            total
+        );
+
+
+    /* -----------------------------------------------------
+       PROZENTE
+       ----------------------------------------------------- */
 
     document.getElementById(
         "contentPercent"
@@ -1665,6 +1814,32 @@ function calculateText() {
         " %";
 
 
+    /* -----------------------------------------------------
+       NOTEN
+       ----------------------------------------------------- */
+
+    document.getElementById(
+        "contentGrade"
+    ).textContent =
+        contentGrade;
+
+
+    document.getElementById(
+        "correctnessGrade"
+    ).textContent =
+        correctnessGrade;
+
+
+    document.getElementById(
+        "styleGrade"
+    ).textContent =
+        styleGrade;
+
+
+    /* -----------------------------------------------------
+       GEWICHTETE WERTE
+       ----------------------------------------------------- */
+
     document.getElementById(
         "contentWeighted"
     ).textContent =
@@ -1686,6 +1861,10 @@ function calculateText() {
         " %";
 
 
+    /* -----------------------------------------------------
+       GESAMT
+       ----------------------------------------------------- */
+
     document.getElementById(
         "textTotal"
     ).textContent =
@@ -1693,34 +1872,10 @@ function calculateText() {
         " %";
 
 
-    let grade = 6;
-
-
-    for (
-        let i = 0;
-        i < gradeThresholds.length;
-        i++
-    ) {
-
-        if (
-            total >=
-            gradeThresholds[i].p
-        ) {
-
-            grade =
-                gradeThresholds[i].note;
-
-            break;
-
-        }
-
-    }
-
-
     document.getElementById(
         "textGrade"
     ).textContent =
-        "Note " + grade;
+        "Note " + totalGrade;
 
 }
 
@@ -1731,6 +1886,7 @@ function calculateText() {
    ========================================================= */
 
 function generate() {
+
 
     const subjectKey =
         document.getElementById(
@@ -1761,6 +1917,10 @@ function generate() {
         subject.areas[areaKey];
 
 
+    /* -----------------------------------------------------
+       ÜBERSCHRIFT
+       ----------------------------------------------------- */
+
     document.getElementById(
         "subjectTitle"
     ).textContent =
@@ -1769,13 +1929,14 @@ function generate() {
         area.name;
 
 
-    /*
-       Textproduktion
-    */
+    /* -----------------------------------------------------
+       TEXTPRODUKTION
+       ----------------------------------------------------- */
 
     if (
         area.type === "text"
     ) {
+
 
         document.getElementById(
             "result"
@@ -1787,14 +1948,15 @@ function generate() {
 
         calculateText();
 
+
         return;
 
     }
 
 
-    /*
-       Normale Punktzahl
-    */
+    /* -----------------------------------------------------
+       NORMALE PUNKTZAHL
+       ----------------------------------------------------- */
 
     const maxPoints =
         Number(
@@ -1811,6 +1973,7 @@ function generate() {
         ||
         maxPoints <= 0
     ) {
+
 
         document.getElementById(
             "result"
@@ -1831,10 +1994,15 @@ function generate() {
 
         `;
 
+
         return;
 
     }
 
+
+    /* -----------------------------------------------------
+       ROHPUNKT-BEREICHE
+       ----------------------------------------------------- */
 
     const ranges =
         createRanges(
@@ -1842,6 +2010,10 @@ function generate() {
             area
         );
 
+
+    /* -----------------------------------------------------
+       ERWARTETE STUFEN
+       ----------------------------------------------------- */
 
     const expected =
         area.type === "sek2"
@@ -1854,12 +2026,17 @@ function generate() {
           ];
 
 
+    /* -----------------------------------------------------
+       FEHLENDE STUFEN
+       ----------------------------------------------------- */
+
     const missing = [];
 
 
     for (
         const grade of expected
     ) {
+
 
         const exists =
             ranges.some(
@@ -1871,6 +2048,7 @@ function generate() {
         if (
             !exists
         ) {
+
 
             if (
                 area.type === "sek2"
@@ -1893,13 +2071,14 @@ function generate() {
     }
 
 
-    /*
-       ALARM statt fehlerhafter Tabelle
-    */
+    /* -----------------------------------------------------
+       ALARM
+       ----------------------------------------------------- */
 
     if (
         missing.length > 0
     ) {
+
 
         showAlarm(
             maxPoints,
@@ -1907,18 +2086,20 @@ function generate() {
             missing
         );
 
+
         return;
 
     }
 
 
-    /*
-       Tabelle ausgeben
-    */
+    /* -----------------------------------------------------
+       TABELLE
+       ----------------------------------------------------- */
 
     if (
         area.type === "sek2"
     ) {
+
 
         document.getElementById(
             "result"
@@ -1928,7 +2109,9 @@ function generate() {
                 ranges
             );
 
+
     } else {
+
 
         document.getElementById(
             "result"
