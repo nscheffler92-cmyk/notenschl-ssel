@@ -412,6 +412,14 @@ tr:nth-child(even) {
             Englisch
         </option>
 
+        <option value="geschichte">
+            Geschichte
+        </option>
+
+        <option value="deutsch">
+            Deutsch
+        </option>
+
     </select>
 
 
@@ -747,10 +755,6 @@ const subjects = {
         areas: {
 
 
-            /* -------------------------------------------------
-               SEK I KLASSENARBEITEN
-               ------------------------------------------------- */
-
             klassenarbeiten: {
 
                 name: "Sek I – Klassenarbeiten",
@@ -770,10 +774,6 @@ const subjects = {
 
             },
 
-
-            /* -------------------------------------------------
-               SEK I SONSTIGE LEISTUNGEN
-               ------------------------------------------------- */
 
             sonstige: {
 
@@ -795,10 +795,6 @@ const subjects = {
             },
 
 
-            /* -------------------------------------------------
-               TEXTPRODUKTION 5/6
-               ------------------------------------------------- */
-
             text_5_6: {
 
                 name:
@@ -816,10 +812,6 @@ const subjects = {
 
             },
 
-
-            /* -------------------------------------------------
-               TEXTPRODUKTION 7/8
-               ------------------------------------------------- */
 
             text_7_8: {
 
@@ -839,10 +831,6 @@ const subjects = {
             },
 
 
-            /* -------------------------------------------------
-               TEXTPRODUKTION 9/10
-               ------------------------------------------------- */
-
             text_9_10: {
 
                 name:
@@ -860,10 +848,6 @@ const subjects = {
 
             },
 
-
-            /* -------------------------------------------------
-               SEK II KURSARBEIT
-               ------------------------------------------------- */
 
             sek2_kursarbeit: {
 
@@ -894,10 +878,6 @@ const subjects = {
 
             },
 
-
-            /* -------------------------------------------------
-               SEK II SONSTIGE LEISTUNGEN
-               ------------------------------------------------- */
 
             sek2_sonstige: {
 
@@ -931,6 +911,219 @@ const subjects = {
 
         }
 
+    },
+
+
+    /* =====================================================
+       GESCHICHTE
+       ===================================================== */
+
+    geschichte: {
+
+        name: "Geschichte",
+
+        areas: {
+
+            sek1: {
+
+                name: "Sek I",
+
+                type: "sek1",
+
+                thresholds: [
+
+                    { note: 1, p: 96 },
+                    { note: 2, p: 83 },
+                    { note: 3, p: 65 },
+                    { note: 4, p: 50 },
+                    { note: 5, p: 25 },
+                    { note: 6, p: 0 }
+
+                ]
+
+            },
+
+
+            sek2_kursarbeit: {
+
+                name: "Sek II – Kursarbeit",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 95 },
+                    { np: 14, p: 90 },
+                    { np: 13, p: 85 },
+                    { np: 12, p: 80 },
+                    { np: 11, p: 75 },
+                    { np: 10, p: 70 },
+                    { np: 9, p: 65 },
+                    { np: 8, p: 60 },
+                    { np: 7, p: 55 },
+                    { np: 6, p: 50 },
+                    { np: 5, p: 45 },
+                    { np: 4, p: 40 },
+                    { np: 3, p: 30 },
+                    { np: 2, p: 27 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            },
+
+
+            sek2_sonstige: {
+
+                name: "Sek II – Sonstige Leistungen",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 98 },
+                    { np: 14, p: 95 },
+                    { np: 13, p: 92 },
+                    { np: 12, p: 85 },
+                    { np: 11, p: 80 },
+                    { np: 10, p: 75 },
+                    { np: 9, p: 70 },
+                    { np: 8, p: 65 },
+                    { np: 7, p: 60 },
+                    { np: 6, p: 55 },
+                    { np: 5, p: 50 },
+                    { np: 4, p: 45 },
+                    { np: 3, p: 40 },
+                    { np: 2, p: 30 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            }
+
+        }
+
+    },
+
+
+    /* =====================================================
+       DEUTSCH
+       ===================================================== */
+
+    deutsch: {
+
+        name: "Deutsch",
+
+        areas: {
+
+
+            sek1_klassenarbeiten: {
+
+                name:
+                    "Sek I – Klassenarbeiten Klasse 9/10",
+
+                type: "sek1",
+
+                thresholds: [
+
+                    { note: 1, p: 90 },
+                    { note: 2, p: 75 },
+                    { note: 3, p: 60 },
+                    { note: 4, p: 45 },
+                    { note: 5, p: 27 },
+                    { note: 6, p: 0 }
+
+                ]
+
+            },
+
+
+            sek1_sonstige: {
+
+                name:
+                    "Sek I – Sonstige Leistungen",
+
+                type: "sek1",
+
+                thresholds: [
+
+                    { note: 1, p: 95 },
+                    { note: 2, p: 85 },
+                    { note: 3, p: 65 },
+                    { note: 4, p: 50 },
+                    { note: 5, p: 30 },
+                    { note: 6, p: 0 }
+
+                ]
+
+            },
+
+
+            sek2_kursarbeit: {
+
+                name:
+                    "Sek II – Kursarbeit",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 95 },
+                    { np: 14, p: 90 },
+                    { np: 13, p: 85 },
+                    { np: 12, p: 80 },
+                    { np: 11, p: 75 },
+                    { np: 10, p: 70 },
+                    { np: 9, p: 65 },
+                    { np: 8, p: 60 },
+                    { np: 7, p: 55 },
+                    { np: 6, p: 50 },
+                    { np: 5, p: 45 },
+                    { np: 4, p: 40 },
+                    { np: 3, p: 33 },
+                    { np: 2, p: 27 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            },
+
+
+            sek2_sonstige: {
+
+                name:
+                    "Sek II – Sonstige Leistungen",
+
+                type: "sek2",
+
+                thresholds: [
+
+                    { np: 15, p: 98 },
+                    { np: 14, p: 95 },
+                    { np: 13, p: 92 },
+                    { np: 12, p: 85 },
+                    { np: 11, p: 80 },
+                    { np: 10, p: 75 },
+                    { np: 9, p: 70 },
+                    { np: 8, p: 65 },
+                    { np: 7, p: 60 },
+                    { np: 6, p: 55 },
+                    { np: 5, p: 50 },
+                    { np: 4, p: 45 },
+                    { np: 3, p: 40 },
+                    { np: 2, p: 30 },
+                    { np: 1, p: 20 },
+                    { np: 0, p: 0 }
+
+                ]
+
+            }
+
+        }
+
     }
 
 };
@@ -938,7 +1131,7 @@ const subjects = {
 
 
 /* =========================================================
-   SEK-II-NOTENBEZEICHNUNGEN
+   SEK-II-NOTEN
    ========================================================= */
 
 const sek2Notes = {
@@ -990,12 +1183,8 @@ function updateAreas() {
         subjects[subjectKey];
 
 
-    /* Bereichsauswahl leeren */
-
     areaSelect.innerHTML = "";
 
-
-    /* Sicherheitsprüfung */
 
     if (
         !subject ||
@@ -1015,8 +1204,6 @@ function updateAreas() {
         return;
     }
 
-
-    /* Alle Bereiche einfügen */
 
     Object.keys(
         subject.areas
@@ -1047,8 +1234,6 @@ function updateAreas() {
     );
 
 
-    /* Ersten Bereich auswählen */
-
     if (
         areaSelect.options.length > 0
     ) {
@@ -1057,8 +1242,6 @@ function updateAreas() {
 
     }
 
-
-    /* Anzeige aktualisieren */
 
     generate();
 
@@ -1123,7 +1306,7 @@ function getGrade(
 
 
 /* =========================================================
-   ROHPUNKT-BEREICHE ERMITTELN
+   ROHPUNKT-BEREICHE
    ========================================================= */
 
 function createRanges(
@@ -1618,8 +1801,6 @@ function buildTextProduction(
                 </tr>
 
 
-                <!-- CONTENT -->
-
                 <tr>
 
                     <td>
@@ -1674,8 +1855,6 @@ function buildTextProduction(
                 </tr>
 
 
-                <!-- CORRECTNESS -->
-
                 <tr>
 
                     <td>
@@ -1729,8 +1908,6 @@ function buildTextProduction(
 
                 </tr>
 
-
-                <!-- STYLE -->
 
                 <tr>
 
@@ -1788,8 +1965,6 @@ function buildTextProduction(
             </table>
 
 
-
-            <!-- GESAMTERGEBNIS -->
 
             <div class="result-box">
 
@@ -1869,10 +2044,6 @@ function calculateText() {
         area.weights;
 
 
-    /* -----------------------------------------------------
-       PUNKTE
-       ----------------------------------------------------- */
-
     const contentGot =
         Number(
             document.getElementById(
@@ -1921,10 +2092,6 @@ function calculateText() {
         );
 
 
-    /* -----------------------------------------------------
-       PROZENTE
-       ----------------------------------------------------- */
-
     const contentPercent =
         contentMax > 0
         ? contentGot /
@@ -1948,10 +2115,6 @@ function calculateText() {
           100
         : 0;
 
-
-    /* -----------------------------------------------------
-       ENGLISCH-KLASSENARBEITSSCHLÜSSEL
-       ----------------------------------------------------- */
 
     const thresholds =
         subjects
@@ -1988,10 +2151,6 @@ function calculateText() {
     }
 
 
-    /* -----------------------------------------------------
-       EINZELNOTEN
-       ----------------------------------------------------- */
-
     const contentGrade =
         getTextGrade(
             contentPercent
@@ -2009,10 +2168,6 @@ function calculateText() {
             stylePercent
         );
 
-
-    /* -----------------------------------------------------
-       GEWICHTETE ANTEILE
-       ----------------------------------------------------- */
 
     const contentWeighted =
         contentPercent *
@@ -2032,10 +2187,6 @@ function calculateText() {
         100;
 
 
-    /* -----------------------------------------------------
-       GESAMT
-       ----------------------------------------------------- */
-
     const total =
         contentWeighted +
         correctnessWeighted +
@@ -2047,10 +2198,6 @@ function calculateText() {
             total
         );
 
-
-    /* -----------------------------------------------------
-       AUSGABE PROZENTE
-       ----------------------------------------------------- */
 
     document.getElementById(
         "contentPercent"
@@ -2073,10 +2220,6 @@ function calculateText() {
         + " %";
 
 
-    /* -----------------------------------------------------
-       AUSGABE NOTEN
-       ----------------------------------------------------- */
-
     document.getElementById(
         "contentGrade"
     ).textContent =
@@ -2094,10 +2237,6 @@ function calculateText() {
     ).textContent =
         styleGrade;
 
-
-    /* -----------------------------------------------------
-       AUSGABE GEWICHTETE WERTE
-       ----------------------------------------------------- */
 
     document.getElementById(
         "contentWeighted"
@@ -2119,10 +2258,6 @@ function calculateText() {
         styleWeighted.toFixed(1)
         + " %";
 
-
-    /* -----------------------------------------------------
-       GESAMT
-       ----------------------------------------------------- */
 
     document.getElementById(
         "textTotal"
@@ -2178,10 +2313,6 @@ function generate() {
         subject.areas[areaKey];
 
 
-    /* -----------------------------------------------------
-       ÜBERSCHRIFT
-       ----------------------------------------------------- */
-
     document.getElementById(
         "subjectTitle"
     ).textContent =
@@ -2189,10 +2320,6 @@ function generate() {
         " – " +
         area.name;
 
-
-    /* -----------------------------------------------------
-       TEXTPRODUKTION
-       ----------------------------------------------------- */
 
     if (
         area.type === "text"
@@ -2219,10 +2346,6 @@ function generate() {
 
     }
 
-
-    /* -----------------------------------------------------
-       NORMALE BEWERTUNG
-       ----------------------------------------------------- */
 
     document.getElementById(
         "normalInput"
@@ -2271,20 +2394,12 @@ function generate() {
     }
 
 
-    /* -----------------------------------------------------
-       ROHPUNKT-BEREICHE
-       ----------------------------------------------------- */
-
     const ranges =
         createRanges(
             maxPoints,
             area
         );
 
-
-    /* -----------------------------------------------------
-       ERWARTETE STUFEN
-       ----------------------------------------------------- */
 
     const expected =
         area.type === "sek2"
@@ -2301,10 +2416,6 @@ function generate() {
             4, 5, 6
           ];
 
-
-    /* -----------------------------------------------------
-       FEHLENDE STUFEN
-       ----------------------------------------------------- */
 
     const missing = [];
 
@@ -2345,10 +2456,6 @@ function generate() {
     }
 
 
-    /* -----------------------------------------------------
-       ALARM
-       ----------------------------------------------------- */
-
     if (
         missing.length > 0
     ) {
@@ -2363,10 +2470,6 @@ function generate() {
 
     }
 
-
-    /* -----------------------------------------------------
-       TABELLE
-       ----------------------------------------------------- */
 
     if (
         area.type === "sek2"
